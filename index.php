@@ -26,7 +26,7 @@
     <section>
       <?php
 
-        $database = mysqli_connect("localhost", "root", "", "6sens");
+        include ("config.php");
 
         $request = "SELECT a.*, c.name, u.pseudo  from article a join category c on a.id_category = c.id_category join user u on a.id_user = u.id_user order by date asc";
 
