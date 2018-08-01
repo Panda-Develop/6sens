@@ -60,28 +60,34 @@
           
           
 
-          $Requete2 = "SELECT u.id_user, g.permission as gperm, u.permission as uperm, c.* from `group` g join user u on g.id_group = u.id_group join article a on a.id_user = u.id_user join category c on c.id_category = a.id_category where u.id_user = ".$_SESSION["id"]." group by c.id_category";
+          $Requete2 = "SELECT u.id_user, g.permission as gperm, u.permission as uperm from `group` g join user u on g.id_group = u.id_group where u.id_user = ".$_SESSION["id"]."";
 
           $Resultat2 = mysqli_query( $database, $Requete2 ) ;
 
-          while (  $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC)  ) { 
+          $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ; 
+          $uperm = str_split($ligne2["uperm"]);
+          $gperm = str_split($ligne2["gperm"]);
+  
+          $perm_array = array_unique(array_merge($uperm,$gperm));
 
-            $uperm = str_split($ligne2["uperm"]);
-            $nbruperm = count($uperm);  
-            $gperm = str_split($ligne2["uperm"]);
-            $nbrgperm = count($uperm) ;              
-            
-            echo "<select name='category'>";
-              if ($ligne2["uperm"] == $ligne2["permission"] or $ligne2["gperm"] == $ligne2["permission"] ) {
-                echo "<option value=".$ligne2["permission"].">".$ligne2["name"]."</option>   ";
+          $Requete3 = "SELECT * FROM category order by id_category asc";
+
+          $Resultat3 = mysqli_query( $database, $Requete3 ) ;
+          
+          echo "<select name='category'>";
+          $i = 0;
+          while ( $ligne3 = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC) ) {
+            for ($i = 0 ; $i <= count($perm_array)-1 ; $i++  ) {
+              if ($perm_array[$i] == $ligne3["permission"]) {
+                echo "<option value=".$ligne3["permission"]."> ".$ligne3["name"]."  </option>";
               }
               else {
+                
               }
+            }
           }
 
-          echo "</select>";          
-
-          
+          echo "</select>";      
         ?>
 
 
