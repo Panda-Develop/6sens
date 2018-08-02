@@ -8,7 +8,7 @@
         $psw = SHA1($_POST["psw"]) ;
     }
     
-    $database = mysqli_connect("localhost", "root", "", "6sens");
+    include ("config.php");
 
     $requete = "Select * from user where pseudo = '".$user."' and password = '".$psw."' " ;
     

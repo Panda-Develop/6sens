@@ -44,7 +44,7 @@
 
           
 
-          $database = mysqli_connect("localhost", "root", "", "6sens");
+          include ("config.php");
 
           $Requete = "SELECT u.id_user,CONCAT(u.firstname ,' ', u.lastname) as name ,u.permission as uperm,g.permission as gperm from user u join `group` g on u.id_group = g.id_group order by u.lastname ASC";
 
@@ -58,8 +58,6 @@
 
           echo "</br>";
           
-          
-
           $Requete2 = "SELECT u.id_user, g.permission as gperm, u.permission as uperm from `group` g join user u on g.id_group = u.id_group where u.id_user = ".$_SESSION["id"]."";
 
           $Resultat2 = mysqli_query( $database, $Requete2 ) ;
