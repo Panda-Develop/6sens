@@ -15,7 +15,7 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8">
-    <title>bootstrap4</title>
+    <title>Add Article</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -31,7 +31,7 @@
       ?>
     </header>
     
-    <form action="" method="GET">
+    <form action="valid_add_article.php" method="GET">
       <center>
               
         <input name="title" type="text" placeholder="Titre">
@@ -46,17 +46,15 @@
 
           include ("config.php");
 
-          $Requete = "SELECT u.id_user,CONCAT(u.firstname ,' ', u.lastname) as name ,u.permission as uperm,g.permission as gperm from user u join `group` g on u.id_group = g.id_group order by u.lastname ASC";
+          $Requete = "SELECT u.id_user,CONCAT(u.firstname ,' ', u.lastname) as name ,u.permission as uperm,g.permission as gperm from user u join `group` g on u.id_group = g.id_group where u.id_user = ".$_SESSION["id"]." order by u.lastname ASC";
 
           $Resultat = mysqli_query( $database, $Requete ) ;
 
-          echo "<select name='author'>";
           while (  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)  ) { 
-              echo "<option value=".$ligne["id_user"].">".$ligne["name"]." </option>";
+              echo "<input type='hidden' value=".$ligne["id_user"]." name='author'>";
           }
-          echo "</select>";
 
-          echo "</br>";
+          echo "<input type='text' placeholder='Link image' name='image'>";
           
           $Requete2 = "SELECT u.id_user, g.permission as gperm, u.permission as uperm from `group` g join user u on g.id_group = u.id_group where u.id_user = ".$_SESSION["id"]."";
 
