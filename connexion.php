@@ -8,10 +8,9 @@
         <title> 6sens </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css"/>
-        <link rel="stylesheet" href="./style/css/connexion.css">
-        <link rel="stylesheet" href="./style/css/reset.css">
-        <link rel="stylesheet" href="./style/css/navbar.css">
+        <link rel="stylesheet" href="./connexion.css">
+        <link rel="stylesheet" href="./reset.css">
+        <link rel="stylesheet" href="./navbar.css">
 
 
     </head>

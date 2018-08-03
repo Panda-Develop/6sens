@@ -1,5 +1,11 @@
-<?php      
-    
+<?php
+session_start();
+if (isset($_SESSION['id'])) {
+
+} else {
+  header('location: connexion.php');
+}
+
     $id = $_GET["id"];
 
     include ("config.php");
@@ -24,8 +30,7 @@
     $Requete2 = "UPDATE `group` SET permission = ".$perms." WHERE id_group = ".$id."";
 
     $Resultat2 = mysqli_query( $database, $Requete2 ) ;
-    
+
     header('Location: group_perm.php?id='.$id.'');
-    exit();    
+    exit();
 ?>
-      
