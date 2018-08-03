@@ -7,36 +7,44 @@
     <head>
         <title> 6sens </title>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="./style/css/connexion.css">
+        <link rel="stylesheet" href="./style/css/reset.css">
+        <link rel="stylesheet" href="./style/css/navbar.css">
+
+
     </head>
-    
+
     <body>
+      <header id="connexion-header">
+        <h1 class="title">Se connecter :</h1>
+      </header>
         <section>
-            <div class="Connexion">
-                <form action="connect.php" method="POST">
-                    <center>
-                    
-                        Identifiant : <br>
-                        <input type="text" name="pseudo" placeholder="Identifiant"> 
 
-                        <br>
 
-                        Mot de passe :<br>
-                        <input type="password"  name="psw" placeholder="Mot de passe"> 
+	<div class="login">
+		<div class="login-screen">
 
-                        <br>
-                        
-                        <input type="submit" value="Connexion">
+			<form action="connect.php" method="post">
+        <div class="login-form">
+  				<div class="control-group">
+  				<input type="text" class="login-field" value="" placeholder="Identifiant" id="login-name" name="pseudo">
+  				<label class="login-field-icon fui-user" for="login-name"></label>
+  				</div>
 
-						<br>
+  				<div class="control-group">
+  				<input type="password" class="login-field" value="" placeholder="Mot de passe" id="login-pass" name="psw">
+  				<label class="login-field-icon fui-lock" for="login-pass"></label>
+  				</div>
 
-						<a href="index.php">
-							<input type="button" value="Retour"/>
-						</a>
-                        
-                    </center>
-                </form>
-            </div> 
-        </section>      
+          <input type="submit" value="Connexion" class="btn btn-primary btn-large btn-block">
+  				<a class="login-link" href="../index.php">Retour</a>
+  			</div>
+      </form>
+		</div>
+	</div>
+</body>
+        </section>
     </body>
 </html>

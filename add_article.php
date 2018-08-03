@@ -1,13 +1,5 @@
 <?php
   session_start();
-
-  if (isset($_SESSION['id'])){
-
-  }
-  else {
-    header('Location: connexion.php');
-    exit();   
-  }
 ?>
 
 
@@ -16,6 +8,7 @@
   <head>
     <meta charset="UTF-8">
     <title>bootstrap4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -30,19 +23,19 @@
       include ("nav.php");
       ?>
     </header>
-    
+
     <form action="" method="GET">
       <center>
-              
+
         <input name="title" type="text" placeholder="Titre">
         <br>
         <?php
 
           $date = date("Y/m/d");
 
-          echo "<input type='hidden' name='date' value='$date'>"; 
+          echo "<input type='hidden' name='date' value='$date'>";
 
-          
+
 
           include ("config.php");
 
@@ -51,27 +44,27 @@
           $Resultat = mysqli_query( $database, $Requete ) ;
 
           echo "<select name='author'>";
-          while (  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)  ) { 
+          while (  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)  ) {
               echo "<option value=".$ligne["id_user"].">".$ligne["name"]." </option>";
           }
           echo "</select>";
 
           echo "</br>";
-          
+
           $Requete2 = "SELECT u.id_user, g.permission as gperm, u.permission as uperm from `group` g join user u on g.id_group = u.id_group where u.id_user = ".$_SESSION["id"]."";
 
           $Resultat2 = mysqli_query( $database, $Requete2 ) ;
 
-          $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ; 
+          $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ;
           $uperm = str_split($ligne2["uperm"]);
           $gperm = str_split($ligne2["gperm"]);
-  
+
           $perm_array = array_unique(array_merge($uperm,$gperm));
 
           $Requete3 = "SELECT * FROM category order by id_category asc";
 
           $Resultat3 = mysqli_query( $database, $Requete3 ) ;
-          
+
           echo "<select name='category'>";
           $i = 0;
           while ( $ligne3 = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC) ) {
@@ -80,12 +73,12 @@
                 echo "<option value=".$ligne3["permission"]."> ".$ligne3["name"]."  </option>";
               }
               else {
-                
+
               }
             }
           }
 
-          echo "</select>";      
+          echo "</select>";
         ?>
 
 
@@ -98,7 +91,7 @@
           });
         </script>
 
-        <input type="submit" value="Envoyer">   
+        <input type="submit" value="Envoyer">
 
       </center>
     </form>
