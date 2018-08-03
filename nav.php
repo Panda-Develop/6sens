@@ -9,7 +9,7 @@
         <a class="nav-link" href="./index.php">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="add_article.php">Articles</a>
+        <a class="nav-link" href="add_article.php">Ajouter un article</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="user_perm.php?id=1">Perm User</a>

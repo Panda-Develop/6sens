@@ -3751,7 +3751,7 @@ var Editor = /** @class */ (function () {
             })(idx);
             this.context.memo('help.formatH' + idx, this.lang.help['formatH' + idx]);
         }
-        
+
         this.insertParagraph = this.wrapCommand(function () {
             _this.typing.insertParagraph(_this.editable);
         });
@@ -6608,7 +6608,7 @@ var AirPopover = /** @class */ (function () {
 
 var POPOVER_DIST = 5;
 var HintPopover = /** @class */ (function () {
-    function HintPopover(context) {
+    function HintPopover(context) { 
         var _this = this;
         this.context = context;
         this.ui = $$1.summernote.ui;
