@@ -1,13 +1,5 @@
 <?php
   session_start();
-
-  if (isset($_SESSION['id'])){
-
-  }
-  else {
-    header('Location: connexion.php');
-    exit();   
-  }
 ?>
 
 
@@ -33,16 +25,16 @@
     
     <form action="valid_add_article.php" method="GET">
       <center>
-              
+
         <input name="title" type="text" placeholder="Titre">
         <br>
         <?php
 
           $date = date("Y/m/d");
 
-          echo "<input type='hidden' name='date' value='$date'>"; 
+          echo "<input type='hidden' name='date' value='$date'>";
 
-          
+
 
           include ("config.php");
 
@@ -60,16 +52,16 @@
 
           $Resultat2 = mysqli_query( $database, $Requete2 ) ;
 
-          $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ; 
+          $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ;
           $uperm = str_split($ligne2["uperm"]);
           $gperm = str_split($ligne2["gperm"]);
-  
+
           $perm_array = array_unique(array_merge($uperm,$gperm));
 
           $Requete3 = "SELECT * FROM category order by id_category asc";
 
           $Resultat3 = mysqli_query( $database, $Requete3 ) ;
-          
+
           echo "<select name='category'>";
           $i = 0;
           while ( $ligne3 = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC) ) {
@@ -78,12 +70,12 @@
                 echo "<option value=".$ligne3["permission"]."> ".$ligne3["name"]."  </option>";
               }
               else {
-                
+
               }
             }
           }
 
-          echo "</select>";      
+          echo "</select>";
         ?>
 
 
@@ -95,7 +87,7 @@
           });
         </script>
 
-        <input type="submit" value="Envoyer">   
+        <input type="submit" value="Envoyer">
 
       </center>
     </form>

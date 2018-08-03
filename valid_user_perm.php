@@ -1,5 +1,5 @@
 <?php      
-    
+
     $id = $_GET["id"];
 
     include ("config.php");
@@ -24,8 +24,7 @@
     $Requete2 = "UPDATE `user` SET permission = ".$perms." WHERE id_user = ".$id."";
 
     $Resultat2 = mysqli_query( $database, $Requete2 ) ;
-    
+
     header('Location: user_perm.php?id='.$id.'');
-    exit();    
+    exit();
 ?>
-      
