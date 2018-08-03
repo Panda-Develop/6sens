@@ -47,11 +47,14 @@
               echo "</h2>";
               echo "</a>";
               echo "<div class='text-descirption'>";
-              if (strlen($ligne["text"]) > 200 ) {
-                echo (substr($ligne["text"], 0, 200) . '<a href="article.php?id='.$ligne["id_article"].'"> Lire la suite ... </a>' ) ;
+
+              $text = strip_tags($ligne["text"]);
+
+              if (strlen($text) > 200 ) {
+                echo (substr($text, 0, 200) . '<a href="article.php?id='.$ligne["id_article"].'"> Lire la suite ... </a>' ) ;
               }
               else {
-                echo $ligne["text"];
+                echo $text;
               }
               echo "</div>";
 
@@ -85,11 +88,13 @@
               echo "</a>";
 
               echo "<div class='text-descirption'>";
-              if (strlen($ligne["text"]) > 200 ) {
-                echo (substr($ligne["text"], 0, 200) . ' <a href="article.php?id='.$ligne["id_article"].'"> Lire la suite ... </a>') ;
+              $text = strip_tags($ligne["text"]);
+
+              if (strlen($text) > 200 ) {
+                echo (substr($text, 0, 200) . '<a href="article.php?id='.$ligne["id_article"].'"> Lire la suite ... </a>' ) ;
               }
               else {
-                echo $ligne["text"];
+                echo $text;
               }
               echo "</div>";
 
