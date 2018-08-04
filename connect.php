@@ -34,20 +34,20 @@
 
             else if ($psw != $password) {   
                 mysqli_close ( $database ) ; 
-                header('Location: connexion.php?erreur=3');
+                header('Location: connexion.php');
                 exit();              
             }   
         }
 
         else if ($user != $pseudo and $psw != $password ) {
             mysqli_close ( $database ) ; 
-            header('Location: connexion.php?erreur=4');
+            header('Location: connexion.php');
             exit();    
         }
 
         else if ($user != $pseudo) {  
             mysqli_close ( $database ) ; 
-            header('Location: connexion.php?erreur=2');
+            header('Location: connexion.php');
             exit();    
         }   
 
@@ -55,7 +55,7 @@
 
     else if ($pseudo == "" or $psw == "") {
         mysqli_close ( $database ) ; 
-        header('Location: connexion.php?erreur=1');
+        header('Location: connexion.php');
         exit();   
     }
 
