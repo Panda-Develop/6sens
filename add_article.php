@@ -35,7 +35,7 @@ if (isset($_SESSION['id'])) {
         <br>
         <?php
 
-          $date = date("Y/m/d");
+          $date = date("Y-m-d H-i-s");
 
           echo "<input type='hidden' name='date' value='$date'>";
 
