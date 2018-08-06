@@ -13,8 +13,8 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 <html lang="fr">
   <head>
     <meta charset="UTF-8">
-    <title>Add Article</title>
     <link rel="stylesheet" href="./index.css">
+    <title>Add Article</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -48,7 +48,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
         <br>
         <?php
 
-          $date = date("Y/m/d");
+          $date = date("Y-m-d H-i-s");
 
           echo "<input type='hidden' name='date' value='$date'>";
 

@@ -36,19 +36,31 @@ session_start();
     </header>
 
     <section class="article-view container">
+      <nav aria-label="breadcrumb" style="margin-top:4vh;">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><?php echo $ligne["title"]; ?></li>
+      </ol>
+    </nav>
       <?php
+
         echo "<article class='article'>";
-        echo $ligne["date"];
+        echo "<div class='text-center'>";
+        echo "<img class='img-fluid' src=".$ligne["image_link"].">";
+        echo "</div>";
+        echo "</br>";
+        echo "<h6 style='text-transform:uppercase; font-weight:bold;'> Par ".$ligne["author"]." ,le ".$ligne["date"]."</h6>";
         echo "<br>";
+        echo "<h2>";
+        echo $ligne["title"];
+        echo "</h2>";
+        echo "</br>";
         echo $ligne["text"];
         echo "<br>";
-        echo $ligne["id_user"];
-        echo "<br>";
-        echo $ligne["id_category"];
-        echo "<br>";
-      echo "</article>";
+        echo "</article>";
       ?>
     </section>
 
+    <?php include './footer.php'; ?>
   </body>
 </html>

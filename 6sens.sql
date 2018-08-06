@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
 `id_article` int(10) NOT NULL,
   `title` varchar(150) NOT NULL,
-  `date` date NOT NULL,
+  `date` datetime NOT NULL,
   `text` longtext NOT NULL,
   `image_link` text CHARACTER SET utf8,
   `id_user` int(5) NOT NULL,
