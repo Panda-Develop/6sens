@@ -5,6 +5,7 @@ if (isset($_SESSION['id'])) {
 } else {
   header('location: connexion.php');
 }
+setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
     $id = $_GET["id"];
 

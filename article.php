@@ -1,5 +1,12 @@
 <?php
+<?php
 session_start();
+if (isset($_SESSION['id'])) {
+
+} else {
+  header('location: connexion.php');
+}
+setlocale (LC_TIME, 'fr_FR.utf8','fra');
   $id = $_GET["id"];
   $database = mysqli_connect("54.37.69.12" , "root" , "pandadevelop" , "6sens", "3306");
   $request = "Select * from article where id_article = $id";
