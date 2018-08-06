@@ -1,7 +1,7 @@
 <?php
 session_start();
   $id = $_GET["id"];
-  $database = mysqli_connect("localhost", "root", "", "6sens");
+  $database = mysqli_connect("54.37.69.12" , "root" , "pandadevelop" , "6sens", "3306");
   $request = "Select * from article where id_article = $id";
   $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;
   $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC);
