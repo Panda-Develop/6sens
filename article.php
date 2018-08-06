@@ -1,8 +1,6 @@
 <?php
 session_start();
-
   $id = $_GET["id"];
-
   $database = mysqli_connect("localhost", "root", "", "6sens");
   $request = "Select * from article where id_article = $id";
   $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;
@@ -30,7 +28,6 @@ session_start();
     <header>
     <?php
         include("nav.php");
-
       ?>
 
     </header>
@@ -43,7 +40,6 @@ session_start();
       </ol>
     </nav>
       <?php
-
         echo "<article class='article'>";
         echo "<div class='text-center'>";
         echo "<img class='img-fluid' src=".$ligne["image_link"].">";

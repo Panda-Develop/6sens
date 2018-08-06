@@ -1,4 +1,4 @@
-<?php
+<?php 
   session_start();
   if (isset($_SESSION['id'])) {
 
@@ -139,6 +139,7 @@ require 'config.php';
                   else {
                     echo $text;
                   }
+                  #echo $ligne["text"];
                   echo "</p>";
                   echo "</div>";
                   echo "<div class='card-footer'>";

@@ -22,7 +22,7 @@
   $Requete = 'INSERT INTO article (title, date, text,image_link,id_user, id_category) VALUE ("'.$title.'" ,"'.$date.'", "'.$text.'", "'.$imagelink.'" , "'.$author.'", "'.$category.'") ';
   $Resultat = mysqli_query( $database, $Requete ) ;
 
-  header('Location: success_article.php');
+  header('Location: index.php');
   exit();
 
 ?>
