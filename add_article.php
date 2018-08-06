@@ -5,6 +5,7 @@ if (isset($_SESSION['id'])) {
 } else {
   header('location: connexion.php');
 }
+setlocale (LC_TIME, 'fr_FR.utf8','fra');
 ?>
 
 
@@ -13,12 +14,13 @@ if (isset($_SESSION['id'])) {
   <head>
     <meta charset="UTF-8">
     <title>Add Article</title>
+    <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
-    <script src="summernote-bs4.js"></script>
+    <script src="./summernote-bs4.js"></script>
   </head>
   <body>
 
@@ -27,7 +29,15 @@ if (isset($_SESSION['id'])) {
       include ("nav.php");
       ?>
     </header>
-<div class="container" style="margin-top:4vh;">
+<div class="container" style="margin-top:14vh;">
+
+  <nav aria-label="breadcrumb" style="margin-top:4vh;">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add Article</li>
+  </ol>
+</nav>
+
 
   <h3 style="font-weight:bold; margin-bottom:4vh;">Publier un nouvel article :</h3>
 
@@ -107,5 +117,7 @@ if (isset($_SESSION['id'])) {
       </div>
     </form>
 </div>
+
+<?php include './footer.php'; ?>
   </body>
 </html>
