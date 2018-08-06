@@ -23,6 +23,6 @@
   $Resultat = mysqli_query( $database, $Requete ) ;
 
   header('Location: index.php');
-  exit(); 
-  
+  exit();
+
 ?>
