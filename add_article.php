@@ -12,8 +12,7 @@ if (isset($_SESSION['id'])) {
 <html lang="fr">
   <head>
     <meta charset="UTF-8">
-    <title>bootstrap4</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Article</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -28,11 +27,14 @@ if (isset($_SESSION['id'])) {
       include ("nav.php");
       ?>
     </header>
+<div class="container" style="margin-top:4vh;">
 
-    <form action="" method="GET">
-      <center>
+  <h3 style="font-weight:bold; margin-bottom:4vh;">Publier un nouvel article :</h3>
 
-        <input name="title" type="text" placeholder="Titre">
+    <form action="valid_add_article.php" method="GET">
+      <div class="form-group">
+
+        <input name="title" type="text" placeholder="Titre" class="form-control">
         <br>
         <?php
 
@@ -44,17 +46,18 @@ if (isset($_SESSION['id'])) {
 
           include ("config.php");
 
-          $Requete = "SELECT u.id_user,CONCAT(u.firstname ,' ', u.lastname) as name ,u.permission as uperm,g.permission as gperm from user u join `group` g on u.id_group = g.id_group order by u.lastname ASC";
+          $Requete = "SELECT u.id_user,CONCAT(u.firstname ,' ', u.lastname) as name ,u.permission as uperm,g.permission as gperm from user u join `group` g on u.id_group = g.id_group where u.id_user = ".$_SESSION["id"]." order by u.lastname ASC";
 
           $Resultat = mysqli_query( $database, $Requete ) ;
 
-          echo "<select name='author'>";
           while (  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)  ) {
-              echo "<option value=".$ligne["id_user"].">".$ligne["name"]." </option>";
+              echo "<input type='hidden' value=".$ligne["id_user"]." name='author'>";
           }
-          echo "</select>";
 
-          echo "</br>";
+          echo "<div class='row'>";
+          echo "<div class='col'>";
+          echo '<input type="text" placeholder="Lien de l\'image principale" name="image" class="form-control">';
+          echo "</div>";
 
           $Requete2 = "SELECT u.id_user, g.permission as gperm, u.permission as uperm from `group` g join user u on g.id_group = u.id_group where u.id_user = ".$_SESSION["id"]."";
 
@@ -69,8 +72,8 @@ if (isset($_SESSION['id'])) {
           $Requete3 = "SELECT * FROM category order by id_category asc";
 
           $Resultat3 = mysqli_query( $database, $Requete3 ) ;
-
-          echo "<select name='category'>";
+          echo "<div class='col'>";
+          echo "<select name='category' class='form-control'>";
           $i = 0;
           while ( $ligne3 = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC) ) {
             for ($i = 0 ; $i <= count($perm_array)-1 ; $i++  ) {
@@ -84,22 +87,25 @@ if (isset($_SESSION['id'])) {
           }
 
           echo "</select>";
+          echo "</div>";
+          echo "</div>";
         ?>
 
-
-        <div id="summernote"></div>
+<br>
+        <div id="summernote" style="margin-top:4vh;"></div>
         <script>
           $('#summernote').summernote({
-            placeholder: 'Hello bootstrap 4',
             tabsize: 2,
-            height: 100
+            height: 500,
           });
         </script>
 
-        <input type="submit" value="Envoyer">
+<center>
+  <input type="submit" value="Publier l'article" class="btn btn-primary" style="margin-top:4vh;">
 
-      </center>
+</center>
+      </div>
     </form>
-
+</div>
   </body>
 </html>

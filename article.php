@@ -1,4 +1,6 @@
 <?php
+session_start();
+
   $id = $_GET["id"];
 
   $database = mysqli_connect("localhost", "root", "", "6sens");
