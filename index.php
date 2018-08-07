@@ -111,7 +111,6 @@ require 'config.php';
         echo "</button>";
         echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
         echo "<a class='dropdown-item' href='./add_group.php'>Ajouter un groupe</a>";
-        echo "<a class='dropdown-item' href='./remove_group.php'>Supprimer un groupe</a>";
         echo "<a class='dropdown-item' href='./group_perm.php'>Editer un groupe<a>";
         echo "  </div>";
         echo "  </div>";

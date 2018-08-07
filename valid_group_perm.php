@@ -7,6 +7,21 @@ if (isset($_SESSION['id'])) {
 }
 setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
+  if (isset($_GET["delete"])){
+
+    include ("config.php");
+
+    $id = $_GET["id"];
+
+    $Requete2 = 'DELETE FROM `group` WHERE `group`.`id_group` = '.$id.'';
+
+    $Resultat2 = mysqli_query( $database, $Requete2 ) ;
+
+    header('Location: group_perm.php');
+  }
+  else {
+
+
     $id = $_GET["id"];
     $name = $_GET["name"];
 
@@ -35,4 +50,5 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
     header('Location: group_perm.php?id='.$id.'');
     exit();
+  }
 ?>

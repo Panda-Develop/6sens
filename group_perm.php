@@ -109,12 +109,12 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
           echo "<center>";
           echo '<input type="submit" value="Enregister les informations" class="btn btn-primary" style="margin-top:4vh;">';
+          echo "<br>";
+          echo '<input type="submit" name="delete" value="Supprimer le groupe" class="btn btn-danger" style="margin-top:2vh;">';
           echo "</center>";
 
           echo "</form>";
-
-
-
+          
         }
         else {
         }
