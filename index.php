@@ -1,4 +1,4 @@
-<?php 
+<?php
   session_start();
   if (isset($_SESSION['id'])) {
 
@@ -60,7 +60,7 @@ require 'config.php';
     $Resultat3 = mysqli_query ( $database, $request3 ) or die(mysql_error() ) ;
 
     while (  $ligne = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC)  ) {
-      if ($ligne["id_group"] == "1") { 
+      if ($ligne["id_group"] == "1") {
         echo "<div class='dropdown'>";
         echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
         echo "Article";
@@ -73,7 +73,7 @@ require 'config.php';
       }
       else {
         echo "<a class='btn btn-primary' href='./add_article.php'>Ajouter un article</a>";
-      } 
+      }
 
       if ($ligne["id_group"] == "2" || $ligne["id_group"] == "1") {
         echo "<div class='dropdown'>";
@@ -111,7 +111,6 @@ require 'config.php';
         echo "</button>";
         echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
         echo "<a class='dropdown-item' href='./add_group.php'>Ajouter un groupe</a>";
-        echo "<a class='dropdown-item' href='./remove_group.php'>Supprimer un groupe</a>";
         echo "<a class='dropdown-item' href='./group_perm.php'>Editer un groupe<a>";
         echo "  </div>";
         echo "  </div>";
@@ -158,7 +157,6 @@ require 'config.php';
                   else {
                     echo $text;
                   }
-                  #echo $ligne["text"];
                   echo "</p>";
                   echo "</div>";
                   echo "<div class='card-footer'>";

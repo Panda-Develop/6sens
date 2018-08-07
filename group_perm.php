@@ -88,16 +88,17 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
               for ($j = 0 ; $j <= count($uperm)-1 ; $j++  ) {
                 if ($uperm[$j] == $i){
                   echo "<td> <input type='checkbox' checked  name='perm".$i."' </td>";
+
                   $m = 1;
                 }
                 else {
-    
+
                 }
               }
               if ($m == 0) {
                 echo "<td> <input type='checkbox' name='perm".$i."' </td>";
               }
-    
+
               $i++;
             echo "</tr>";
           }
@@ -108,18 +109,20 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
           echo "<center>";
           echo '<input type="submit" value="Enregister les informations" class="btn btn-primary" style="margin-top:4vh;">';
+          echo "<br>";
+          echo '<input type="submit" name="delete" value="Supprimer le groupe" class="btn btn-danger" style="margin-top:2vh;">';
           echo "</center>";
 
           echo "</form>";
-
-
-
+          
         }
         else {
         }
       ?>
-
-
+</section>
+<footer>
+<?php include './footer.php'; ?>
+</footer>
 
   </body>
 </html>
