@@ -8,6 +8,7 @@ if (isset($_SESSION['id'])) {
 setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
     $id = $_GET["id"];
+    $name = $_GET["name"];
 
     include ("config.php");
 
@@ -28,7 +29,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
     echo $perms;
 
-    $Requete2 = "UPDATE `group` SET permission = ".$perms." WHERE id_group = ".$id."";
+    $Requete2 = 'UPDATE `group` SET  `name` = "'.$name.'", permission = "'.$perms.'" WHERE id_group = '.$id.' ';
 
     $Resultat2 = mysqli_query( $database, $Requete2 ) ;
 
