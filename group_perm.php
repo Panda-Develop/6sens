@@ -68,7 +68,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ;
           $uperm = str_split($ligne2["permission"]);
 
-          echo "<form>";
+          echo "<form action='valid_group_perm.php'>";
 
           echo '<input name="id" type="hidden" value="'.$ligne2["id_group"].'" class="form-control">';
 
