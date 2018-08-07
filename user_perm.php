@@ -1,13 +1,11 @@
 <?php
-  session_start();
+session_start();
+if (isset($_SESSION['id'])) {
 
-  if (isset($_SESSION['id'])){
-
-  }
-  else {
-    header('Location: connexion.php');
-    exit();
-  }
+} else {
+  header('location: connexion.php');
+}
+setlocale (LC_TIME, 'fr_FR.utf8','fra');
 ?>
 
 
