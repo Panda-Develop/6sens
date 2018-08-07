@@ -1,5 +1,11 @@
 <?php
-  session_start();
+session_start();
+if (isset($_SESSION['id'])) {
+
+} else {
+  header('location: connexion.php');
+}
+setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
   $title = $_GET["title"];
 
