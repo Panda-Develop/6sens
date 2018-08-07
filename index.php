@@ -1,4 +1,4 @@
-<?php 
+<?php
   session_start();
   if (isset($_SESSION['id'])) {
 
@@ -60,7 +60,7 @@ require 'config.php';
     $Resultat3 = mysqli_query ( $database, $request3 ) or die(mysql_error() ) ;
 
     while (  $ligne = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC)  ) {
-      if ($ligne["id_group"] == "1") { 
+      if ($ligne["id_group"] == "1") {
         echo "<div class='dropdown'>";
         echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
         echo "Article";
@@ -73,7 +73,7 @@ require 'config.php';
       }
       else {
         echo "<a class='btn btn-primary' href='./add_article.php'>Ajouter un article</a>";
-      } 
+      }
 
       if ($ligne["id_group"] == "2" || $ligne["id_group"] == "1") {
         echo "<div class='dropdown'>";
@@ -158,7 +158,6 @@ require 'config.php';
                   else {
                     echo $text;
                   }
-                  #echo $ligne["text"];
                   echo "</p>";
                   echo "</div>";
                   echo "<div class='card-footer'>";

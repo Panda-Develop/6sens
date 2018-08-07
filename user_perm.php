@@ -103,13 +103,13 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
                   $m = 1;
                 }
                 else {
-    
+
                 }
               }
               if ($m == 0) {
                 echo "<td> <input type='checkbox' name='perm".$i."' </td>";
               }
-    
+
               $i++;
             echo "</tr>";
           }
@@ -118,15 +118,16 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
           echo "<br>";
 
-          echo "<select>" ;
+          echo "<select class='form-control'>" ;
 
           $Requete4 = "SELECT g.* , (SELECT id_group from user where id_user = 1) as userg from `group` g";
 
           $Resultat4 = mysqli_query( $database, $Requete4 ) ;
-    
+
           while (  $ligne4 = mysqli_fetch_array($Resultat4,MYSQLI_ASSOC)  ) {
 
             if ($ligne4["id_group"] == $ligne4["userg"]) {
+
              echo "<option name='usergroup' value='".$ligne4['name']."' selected> ".$ligne4['name']." </option>";
             }
             else {
@@ -146,8 +147,8 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
         else {
         }
       ?>
-
-
+</section>
+<?php include './footer.php'; ?>
 
   </body>
 </html>

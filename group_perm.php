@@ -88,16 +88,17 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
               for ($j = 0 ; $j <= count($uperm)-1 ; $j++  ) {
                 if ($uperm[$j] == $i){
                   echo "<td> <input type='checkbox' checked  name='perm".$i."' </td>";
+
                   $m = 1;
                 }
                 else {
-    
+
                 }
               }
               if ($m == 0) {
                 echo "<td> <input type='checkbox' name='perm".$i."' </td>";
               }
-    
+
               $i++;
             echo "</tr>";
           }
@@ -118,8 +119,10 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
         else {
         }
       ?>
-
-
+</section>
+<footer>
+<?php include './footer.php'; ?>
+</footer>
 
   </body>
 </html>
