@@ -68,8 +68,11 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ;
           $uperm = str_split($ligne2["permission"]);
 
-          echo "<form>";
+          echo "<form action='valid_user_perm.php'>";
+
           echo '<div class="form-group">';
+
+          echo '<input name="id" type="hidden" value="'.$ligne2["id_user"].'" class="form-control">';
 
           echo '<input name="nom" type="text" placeholder="Nom" value="'.$ligne2["lastname"].'" class="form-control">';
 
@@ -134,14 +137,11 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
           echo "</select>";
 
-          
-
-          echo "</form>";
-
           echo "<center>";
           echo '<input type="submit" value="Enregister les informations" class="btn btn-primary" style="margin-top:4vh;">';
           echo "</center>";
 
+          echo "</form>";
         }
         else {
         }
