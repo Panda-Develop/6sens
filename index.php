@@ -88,7 +88,7 @@ require 'config.php';
       }
       else {
       }
-      
+
       if ($ligne["id_group"] == "1") {
         echo "<div class='dropdown'>";
         echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
@@ -98,6 +98,21 @@ require 'config.php';
         echo "<a class='dropdown-item' href='./add_user.php'>Ajouter un utilisateur</a>";
         echo "<a class='dropdown-item' href='./remove_user.php'>Supprimer un utilisateur</a>";
         echo "<a class='dropdown-item' href='./user_perm.php'>Editer un utilisateur</a>";
+        echo "  </div>";
+        echo "  </div>";
+      }
+      else {
+      }
+
+      if ($ligne["id_group"] == "1") {
+        echo "<div class='dropdown'>";
+        echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
+        echo "Groupes";
+        echo "</button>";
+        echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
+        echo "<a class='dropdown-item' href='./add_group.php'>Ajouter un groupe</a>";
+        echo "<a class='dropdown-item' href='./remove_group.php'>Supprimer un groupe</a>";
+        echo "<a class='dropdown-item' href='./group_perm.php'>Editer un groupe<a>";
         echo "  </div>";
         echo "  </div>";
       }
