@@ -55,7 +55,7 @@ require 'config.php';
 
     include ("config.php");
 
-    $request3 = "Select * from user";
+    $request3 = "Select * from user where id_user = ".$_SESSION["id"]."";
 
     $Resultat3 = mysqli_query ( $database, $request3 ) or die(mysql_error() ) ;
 
@@ -93,7 +93,8 @@ require 'config.php';
     echo "</button>";
     echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
     echo "<a class='dropdown-item' href='./add_user.php'>Ajouter un utilisateur</a>";
-    echo "  <a class='dropdown-item' href='./remove_user.php'>Supprimer un utilisateur</a>";
+    echo "<a class='dropdown-item' href='./remove_user.php'>Supprimer un utilisateur</a>";
+    echo "<a class='dropdown-item' href='./user_perm.php'>Editer un utilisateur</a>";
     echo "  </div>";
     echo "  </div>";
 }else {
