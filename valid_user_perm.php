@@ -8,7 +8,11 @@ if (isset($_SESSION['id'])) {
 setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
     $id = $_GET["id"];
-
+    $nom = $_GET["nom"];
+    $prenom = $_GET["prenom"];
+    $pseudo = $_GET["pseudo"];
+    $email = $_GET["email"];
+    
     include ("config.php");
 
     $Requete = "SELECT COUNT(*) as nbr from category";
@@ -26,9 +30,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
       }
     }
 
-    echo $perms;
-
-    $Requete2 = "UPDATE `user` SET permission = ".$perms." WHERE id_user = ".$id."";
+    $Requete2 = 'UPDATE `user` SET firstname = "'.$prenom.'", lastname = "'.$nom.'" , pseudo = "'.$pseudo.'", email = "'.$email.'" ,permission = "'.$perms.'" WHERE id_user = "'.$id.'" ' ;
 
     $Resultat2 = mysqli_query( $database, $Requete2 ) ;
 
