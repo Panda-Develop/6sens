@@ -59,20 +59,22 @@ require 'config.php';
 
     $Resultat3 = mysqli_query ( $database, $request3 ) or die(mysql_error() ) ;
 
-      while (  $ligne = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC)  ) {
-      if ($ligne["id_group"] == "1") {
-      echo "<div class='dropdown'>";
-      echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
-      echo "Article";
-      echo "</button>";
-      echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
-      echo "<a class='dropdown-item' href='./add_article.php'>Ajouter un article</a>";
-      echo "  <a class='dropdown-item' href='./remove_article.php'>Supprimer un article</a>";
-      echo "  </div>";
-      echo "  </div>";
-}else {
-  echo "<a class='btn btn-primary' href='./add_article.php'>Ajouter un article</a>";
-}
+    while (  $ligne = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC)  ) {
+      if ($ligne["id_group"] == "1") { 
+        echo "<div class='dropdown'>";
+        echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
+        echo "Article";
+        echo "</button>";
+        echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
+        echo "<a class='dropdown-item' href='./add_article.php'>Ajouter un article</a>";
+        echo "  <a class='dropdown-item' href='./remove_article.php'>Supprimer un article</a>";
+        echo "  </div>";
+        echo "  </div>";
+      }
+      else {
+        echo "<a class='btn btn-primary' href='./add_article.php'>Ajouter un article</a>";
+      } 
+
       if ($ligne["id_group"] == "2" || $ligne["id_group"] == "1") {
         echo "<div class='dropdown'>";
         echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
@@ -83,23 +85,24 @@ require 'config.php';
         echo "  <a class='dropdown-item' href='./remove_categorie.php'>Supprimer une categorie</a>";
         echo "  </div>";
         echo "  </div>";
-    }else {
-
-    }
-    if ($ligne["id_group"] == "1") {
-    echo "<div class='dropdown'>";
-    echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
-    echo "Utilisateurs";
-    echo "</button>";
-    echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
-    echo "<a class='dropdown-item' href='./add_user.php'>Ajouter un utilisateur</a>";
-    echo "<a class='dropdown-item' href='./remove_user.php'>Supprimer un utilisateur</a>";
-    echo "<a class='dropdown-item' href='./user_perm.php'>Editer un utilisateur</a>";
-    echo "  </div>";
-    echo "  </div>";
-}else {
-
-    }
+      }
+      else {
+      }
+      
+      if ($ligne["id_group"] == "1") {
+        echo "<div class='dropdown'>";
+        echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
+        echo "Utilisateurs";
+        echo "</button>";
+        echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
+        echo "<a class='dropdown-item' href='./add_user.php'>Ajouter un utilisateur</a>";
+        echo "<a class='dropdown-item' href='./remove_user.php'>Supprimer un utilisateur</a>";
+        echo "<a class='dropdown-item' href='./user_perm.php'>Editer un utilisateur</a>";
+        echo "  </div>";
+        echo "  </div>";
+      }
+      else {
+      }
 }
 
      ?>
