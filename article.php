@@ -8,7 +8,7 @@ if (isset($_SESSION['id'])) {
 setlocale (LC_TIME, 'fr_FR.utf8','fra');
   $id = $_GET["id"];
   $database = mysqli_connect("54.37.69.12" , "root" , "pandadevelop" , "6sens", "3306");
-  $request = "Select * from article where id_article = $id";
+  $request = "Select a.*, u.pseudo from article a join user u on a.id_user = u.id_user where a.id_article = $id";
   $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;
   $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC);
 ?>
@@ -50,11 +50,12 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
         echo "<div class='text-center'>";
         echo "<img class='img-fluid' src=".$ligne["image_link"].">";
         echo "</div>";
-        echo "</br>";
-        echo "<h6 style='text-transform:uppercase; font-weight:bold;'> Par ".$ligne["author"]." ,le ".$ligne["date"]."</h6>";
-        echo "<br>";
+        echo "</br>";  
+        echo "<h6 style='text-transform:uppercase; font-weight:bold;'> Par ".$ligne["pseudo"]." , le ".strftime("%d %B %Y", strtotime($ligne['date'])); 
         echo "<h2>";
+        echo "<center>";
         echo $ligne["title"];
+        echo "</center>";
         echo "</h2>";
         echo "</br>";
         echo $ligne["text"];
