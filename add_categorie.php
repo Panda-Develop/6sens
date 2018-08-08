@@ -14,7 +14,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./index.css">
-    <title>Add Article</title>
+    <title>Ajouter une catégorie</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -45,27 +45,32 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
           <input name="name" type="text" placeholder="Nom" class="form-control">
           <br>
+          <center>
+          <input type="submit" value="Ajouter la catégorie" class="btn btn-primary" style="margin-top:4vh;">
 
+          </center>
+          <br>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Catégories déjà existantes</th>
+              </tr>
+            </thead>
+            <tbody>
           <?php
               include ("config.php");
 
               $Requete3 = "SELECT * from category order by id_category asc";
 
               $Resultat3 = mysqli_query( $database, $Requete3 ) ;
-              echo "<table>";
               while (  $ligne3 = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC)  ) {
                 echo "<tr>";
                   echo "<td> ". $ligne3["name"] ." </td>";
-                  echo "<td> <input type='checkbox' name='perm".$ligne3['permission']."' </td>";
                 echo "</tr>";
               }
-              echo "</table>"
           ?>
-
-          <center>
-          <input type="submit" value="Ajouter la catégorie" class="btn btn-primary" style="margin-top:4vh;">
-
-          </center>
+        </tbody>
+      </table>
         </div>
 
       </form>
@@ -74,4 +79,3 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
     <?php include './footer.php'; ?>
   </body>
 </html>
-

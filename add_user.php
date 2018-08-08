@@ -38,7 +38,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
       </nav>
 
 
-      <h3 style="font-weight:bold; margin-bottom:4vh;">Ajouter un nouveau utilisateur :</h3>
+      <h3 style="font-weight:bold; margin-bottom:4vh;">Ajouter un nouvel utilisateur :</h3>
 
       <form action="valid_add_user.php" method="GET">
         <div class="form-group">
@@ -87,15 +87,15 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
               $Requete4 = "SELECT g.* from `group` g";
               $Resultat4 = mysqli_query( $database, $Requete4 ) ;
-  
+
               while (  $ligne4 = mysqli_fetch_array($Resultat4,MYSQLI_ASSOC)  ) {
                  echo "<option value='".$ligne4['id_group']."'> ".$ligne4['name']." </option>";
               }
-    
+
               echo "</select>";
           ?>
 
-          
+
 
           <center>
           <input type="submit" value="Ajouter l'utilisateur" class="btn btn-primary" style="margin-top:4vh;">
