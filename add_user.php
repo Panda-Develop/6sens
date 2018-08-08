@@ -33,17 +33,37 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
       <nav aria-label="breadcrumb" style="margin-top:4vh;">
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Ajouter un groupe</li>
+              <li class="breadcrumb-item active" aria-current="page">Ajouter un utilisateur</li>
           </ol>
       </nav>
 
 
-      <h3 style="font-weight:bold; margin-bottom:4vh;">Ajouter un nouveau groupe :</h3>
+      <h3 style="font-weight:bold; margin-bottom:4vh;">Ajouter un nouveau utilisateur :</h3>
 
-      <form action="valid_add_group.php" method="GET">
+      <form action="valid_add_user.php" method="GET">
         <div class="form-group">
 
-          <input name="name" type="text" placeholder="Nom" class="form-control">
+          <input name="nom" type="text" placeholder="Nom" class="form-control">
+
+          <br>
+
+          <input name="prenom" type="text" placeholder="Prénom" class="form-control">
+
+          <br>
+
+          <input name="pseudo" type="text" placeholder="Pseudo"  class="form-control">
+
+          <br>
+
+          <div class="row">
+            <div class="col-sm-6"> <input name="password" type="password" placeholder="Mot de passe"  class="form-control"> </div>
+            <div class="col-sm-6"> <input name="repassword" type="password" placeholder="Vérification de mot de passe"  class="form-control"> </div>
+          </div>
+
+          <br>
+
+          <input name="email" type="email" placeholder="Email" class="form-control">
+
           <br>
 
           <?php
@@ -59,11 +79,26 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
                   echo "<td> <input type='checkbox' name='perm".$ligne3['permission']."' </td>";
                 echo "</tr>";
               }
-              echo "</table>"
+              echo "</table>";
+
+              echo "<br>";
+
+              echo "<select name='group' class='form-control'>" ;
+
+              $Requete4 = "SELECT g.* from `group` g";
+              $Resultat4 = mysqli_query( $database, $Requete4 ) ;
+  
+              while (  $ligne4 = mysqli_fetch_array($Resultat4,MYSQLI_ASSOC)  ) {
+                 echo "<option value='".$ligne4['id_group']."'> ".$ligne4['name']." </option>";
+              }
+    
+              echo "</select>";
           ?>
 
+          
+
           <center>
-          <input type="submit" value="Ajouter le groupe" class="btn btn-primary" style="margin-top:4vh;">
+          <input type="submit" value="Ajouter l'utilisateur" class="btn btn-primary" style="margin-top:4vh;">
 
           </center>
         </div>

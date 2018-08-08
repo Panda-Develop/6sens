@@ -82,7 +82,7 @@ require 'config.php';
         echo "</button>";
         echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
         echo "<a class='dropdown-item'  href='./add_categorie.php'>Ajouter une catégorie</a>";
-        echo "  <a class='dropdown-item' href='./remove_categorie.php'>Supprimer une categorie</a>";
+        echo "  <a class='dropdown-item' href='./categorie_perm.php'>Editer une categorie</a>";
         echo "  </div>";
         echo "  </div>";
       }
@@ -96,7 +96,6 @@ require 'config.php';
         echo "</button>";
         echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
         echo "<a class='dropdown-item' href='./add_user.php'>Ajouter un utilisateur</a>";
-        echo "<a class='dropdown-item' href='./remove_user.php'>Supprimer un utilisateur</a>";
         echo "<a class='dropdown-item' href='./user_perm.php'>Editer un utilisateur</a>";
         echo "  </div>";
         echo "  </div>";
@@ -151,8 +150,9 @@ require 'config.php';
                   echo "</h5>";
                   echo "<p class='card-text'>";
                   $text = strip_tags($ligne["text"]);
-                  if (strlen($text) > 50 ) {
-                      echo (substr($text, 0, 100) . "...") ;
+                  if (strlen($text) > 300 ) {
+                    
+                      echo (substr($text, 0, 300). "...") ;
                   }
                   else {
                     echo $text;
@@ -167,15 +167,9 @@ require 'config.php';
                   echo "</small>";
                   echo "</div>";
                   echo "</div>";
-
-
-
-
                 }
 
                 else {
-
-
 
                   echo "<div class='card col-lg-4 col-md-6 col-sm-12'>";
                   echo "<img class='card-img-top' src=".$ligne["image_link"]." alt='Card image cap'>";
@@ -185,8 +179,8 @@ require 'config.php';
                   echo "</h5>";
                   echo "<p class='card-text'>";
                   $text = strip_tags($ligne["text"]);
-                  if (strlen($text) > 50 ) {
-                      echo (substr($text, 0, 10) . "...") ;
+                  if (strlen($text) > 150 ) {
+                      echo (substr($text, 0, 150) . '<a href="article.php?id='.$ligne["id_article"].'"> Lire la suite ... </a>') ;
                   }
                   else {
                     echo $text;
@@ -194,7 +188,7 @@ require 'config.php';
                   echo "</p>";
                   echo "</div>";
                   echo "<div class='card-footer'>";
-                  echo '<a href="article.php?id='.$ligne["id_article"].'"> Lire la suite ... </a>';
+                  echo "<a href='article.php?id=".$ligne["id_article"]."'> Lire l'article </a>";
                   echo "<br>";
                   echo "<small class='text-muted'>";
                   echo $ligne['date'];

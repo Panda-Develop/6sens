@@ -40,14 +40,14 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           <?php
             if (isset($_GET["id"])) {
               include ("config.php");
-              $Requete4 = "SELECT * FROM `user` where id_user = ".$_GET["id"]." ";
+              $Requete4 = "SELECT * FROM `category` where id_category = ".$_GET["id"]." ";
               $Resultat4 = mysqli_query( $database, $Requete4 ) ;
               $ligne4 = mysqli_fetch_array($Resultat4,MYSQLI_ASSOC);
-              echo '<li class="breadcrumb-item"><a href="./user_perm.php">Editer un group</a></li>';
-              echo '<li class="breadcrumb-item active" aria-current="page"> '.$ligne4["pseudo"].' </li>';
+              echo '<li class="breadcrumb-item"><a href="./categorie_perm.php">Editer une catégorie</a></li>';
+              echo '<li class="breadcrumb-item active" aria-current="page"> '.$ligne4["name"].' </li>';
             }
             else {
-              echo '<li class="breadcrumb-item active" aria-current="page"> Editer un utilisateur </li>';
+              echo '<li class="breadcrumb-item active" aria-current="page"> Editer une catégorie </li>';
             }
           ?>
 
@@ -63,18 +63,18 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Pseudo</th>
+            <th>Nom</th>
           </tr>
         </thead>
         <tbody>
 
           <?php
             include ("config.php");
-            $Requete = "SELECT * FROM user where 1";
+            $Requete = "SELECT * FROM category where 1";
             $Resultat = mysqli_query( $database, $Requete ) ;
             while ($ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)){
               echo "<tr>";
-              echo "<td> <a href='user_perm.php?id=".$ligne["id_user"]."'>" .$ligne["pseudo"]." </a> </td>";
+              echo "<td> <a href='categorie_perm.php?id=".$ligne["id_category"]."'>" .$ligne["name"]." </a> </td>";
               echo "</tr>";
             }
           ?>
@@ -87,30 +87,21 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
       <?php
         if (isset($_GET["id"])) {
-          $Requete2 = "SELECT * from user where id_user = ".$_GET["id"]." ";
+          $Requete2 = "SELECT * from `category` where id_category = ".$_GET["id"]." ";
           $Resultat2 = mysqli_query( $database, $Requete2 ) ;
           $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ;
           $uperm = str_split($ligne2["permission"]);
 
-          echo "<form action='valid_user_perm.php'>";
+          echo "<form action='valid_categorie_perm.php'>";
+
+          echo '<input name="id" type="hidden" value="'.$ligne2["id_category"].'" class="form-control">';
 
           echo '<div class="form-group">';
 
-          echo '<input name="id" type="hidden" value="'.$ligne2["id_user"].'" class="form-control">';
+          echo '<input name="name" type="text" placeholder="Nom" value="'.$ligne2["name"].'" class="form-control">';
 
-          echo '<input name="nom" type="text" placeholder="Nom" value="'.$ligne2["lastname"].'" class="form-control">';
-
+          
           echo "<br>";
-
-          echo '<input name="prenom" type="text" placeholder="Prénom" value="'.$ligne2["firstname"].'" class="form-control">';
-
-          echo "<br>";
-
-          echo '<input name="pseudo" type="text" placeholder="Pseudo" value="'.$ligne2["pseudo"].'" class="form-control">';
-
-          echo "<br>";
-
-          echo '<input name="email" type="text" placeholder="Email" value="'.$ligne2["email"].'" class="form-control">';
 
           $Requete3 = "SELECT * from category order by id_category asc";
 
@@ -124,6 +115,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
               for ($j = 0 ; $j <= count($uperm)-1 ; $j++  ) {
                 if ($uperm[$j] == $i){
                   echo "<td> <input type='checkbox' checked  name='perm".$i."' </td>";
+
                   $m = 1;
                 }
                 else {
@@ -142,38 +134,22 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
           echo "<br>";
 
-          echo "<select class='form-control'>" ;
-
-          $Requete4 = "SELECT g.* , (SELECT id_group from user where id_user = 1) as userg from `group` g";
-
-          $Resultat4 = mysqli_query( $database, $Requete4 ) ;
-
-          while (  $ligne4 = mysqli_fetch_array($Resultat4,MYSQLI_ASSOC)  ) {
-
-            if ($ligne4["id_group"] == $ligne4["userg"]) {
-
-             echo "<option name='usergroup' value='".$ligne4['name']."' selected> ".$ligne4['name']." </option>";
-            }
-            else {
-
-              echo "<option name='usergroup' value='".$ligne4['name']."'> ".$ligne4['name']." </option>";
-            }
-          }
-
-          echo "</select>";
-
           echo "<center>";
           echo '<input type="submit" value="Enregister les informations" class="btn btn-primary" style="margin-top:4vh;">';
           echo "<br>";
-          echo '<input type="submit" name="delete" value="Supprimer le groupe" class="btn btn-danger" style="margin-top:2vh;">';
+          echo '<input type="submit" name="delete" value="Supprimer la categorie" class="btn btn-danger" style="margin-top:2vh;">';
           echo "</center>";
+
           echo "</form>";
+          
         }
         else {
         }
       ?>
-</section>
+  </section>
+<footer>
 <?php include './footer.php'; ?>
+</footer>
 
   </body>
 </html>
