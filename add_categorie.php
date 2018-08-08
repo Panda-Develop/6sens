@@ -33,14 +33,14 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
       <nav aria-label="breadcrumb" style="margin-top:4vh;">
           <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Ajouter un groupe</li>
+              <li class="breadcrumb-item active" aria-current="page">Ajouter une catégorie</li>
           </ol>
       </nav>
 
 
-      <h3 style="font-weight:bold; margin-bottom:4vh;">Ajouter un nouveau groupe :</h3>
+      <h3 style="font-weight:bold; margin-bottom:4vh;">Ajouter une catégorie :</h3>
 
-      <form action="valid_add_group.php" method="GET">
+      <form action="valid_add_categorie.php" method="GET">
         <div class="form-group">
 
           <input name="name" type="text" placeholder="Nom" class="form-control">
@@ -63,7 +63,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           ?>
 
           <center>
-          <input type="submit" value="Ajouter le groupe" class="btn btn-primary" style="margin-top:4vh;">
+          <input type="submit" value="Ajouter la catégorie" class="btn btn-primary" style="margin-top:4vh;">
 
           </center>
         </div>
@@ -74,3 +74,4 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
     <?php include './footer.php'; ?>
   </body>
 </html>
+

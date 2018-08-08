@@ -36,9 +36,28 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
       <nav aria-label="breadcrumb" style="margin-top:4vh;">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
-          <li class="breadcrumb-item active" aria-current="page"> Editer un group </li>
+          <?php
+            if (isset($_GET["id"])) {
+              include ("config.php");
+              $Requete4 = "SELECT * FROM `group` where id_group = ".$_GET["id"]." ";
+              $Resultat4 = mysqli_query( $database, $Requete4 ) ;
+              $ligne4 = mysqli_fetch_array($Resultat4,MYSQLI_ASSOC);
+              echo '<li class="breadcrumb-item"><a href="./group_perm.php">Editer un group</a></li>';
+              echo '<li class="breadcrumb-item active" aria-current="page"> '.$ligne4["name"].' </li>';
+            }
+            else {
+              echo '<li class="breadcrumb-item active" aria-current="page"> Editer un group </li>';
+            }
+          ?>
+          
         </ol>
       </nav>
+            
+      <?php
+        if (isset($_GET["id"])) {
+        }
+        else {
+      ?>
 
       <table class="table table-hover">
         <thead>
@@ -59,7 +78,11 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
             }
           ?>
         </tbody>
-      <table>
+      </table>
+
+      <?php
+        }
+      ?>
 
       <?php
         if (isset($_GET["id"])) {
@@ -119,7 +142,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
         else {
         }
       ?>
-</section>
+  </section>
 <footer>
 <?php include './footer.php'; ?>
 </footer>
