@@ -36,14 +36,14 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
       <nav aria-label="breadcrumb" style="margin-top:4vh;">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
-          
+
           <?php
             if (isset($_GET["id"])) {
               include ("config.php");
               $Requete4 = "SELECT * FROM `user` where id_user = ".$_GET["id"]." ";
               $Resultat4 = mysqli_query( $database, $Requete4 ) ;
               $ligne4 = mysqli_fetch_array($Resultat4,MYSQLI_ASSOC);
-              echo '<li class="breadcrumb-item"><a href="./user_perm.php">Editer un group</a></li>';
+              echo '<li class="breadcrumb-item"><a href="./user_perm.php">Editer un utilisateur</a></li>';
               echo '<li class="breadcrumb-item active" aria-current="page"> '.$ligne4["pseudo"].' </li>';
             }
             else {
@@ -53,13 +53,13 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
         </ol>
       </nav>
-            
+
       <?php
         if (isset($_GET["id"])) {
         }
         else {
       ?>
-      
+
       <table class="table table-hover">
         <thead>
           <tr>
@@ -165,7 +165,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           echo "<center>";
           echo '<input type="submit" value="Enregister les informations" class="btn btn-primary" style="margin-top:4vh;">';
           echo "<br>";
-          echo '<input type="submit" name="delete" value="Supprimer le groupe" class="btn btn-danger" style="margin-top:2vh;">';
+          echo '<input type="submit" name="delete" value="Supprimer l\'utiliateur" class="btn btn-danger" style="margin-top:2vh;">';
           echo "</center>";
           echo "</form>";
         }

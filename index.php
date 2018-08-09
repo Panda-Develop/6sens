@@ -42,7 +42,8 @@ require 'config.php';
         include("nav.php");
       ?>
     </header>
-    <section class="article-view container">
+
+    <div style="margin-top:14vh;padding-left:4vh;" class="container">
       <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
@@ -118,7 +119,10 @@ require 'config.php';
 }
 
      ?>
+</div>
     </div>
+
+    <section class="content-section container">
 
       <h3 style="font-weight:bold; margin-bottom:4vh;">Les articles déjà publiés :</h3>
 
@@ -159,7 +163,7 @@ require 'config.php';
                   echo '<a href="article.php?id='.$ligne["id_article"].'"> Lire la suite ... </a>';
                   echo "<br>";
                   echo "<small class='text-muted'>";
-                  echo "Par ".$ligne["pseudo"]. " le ".strftime("%d %B %Y", strtotime($ligne['date'])); 
+                  echo $ligne['date'];
                   echo "</small>";
                   echo "</div>";
                   echo "</div>";
@@ -187,7 +191,7 @@ require 'config.php';
                   echo "<a href='article.php?id=".$ligne["id_article"]."'> Lire l'article </a>";
                   echo "<br>";
                   echo "<small class='text-muted'>";
-                  echo "Par ".$ligne["pseudo"]. " le ".strftime("%d %B %Y", strtotime($ligne['date'])); 
+                  echo $ligne['date'];
                   echo "</small>";
                   echo "</div>";
                   echo "</div>";

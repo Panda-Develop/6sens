@@ -42,17 +42,17 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
               $Requete4 = "SELECT * FROM `group` where id_group = ".$_GET["id"]." ";
               $Resultat4 = mysqli_query( $database, $Requete4 ) ;
               $ligne4 = mysqli_fetch_array($Resultat4,MYSQLI_ASSOC);
-              echo '<li class="breadcrumb-item"><a href="./group_perm.php">Editer un group</a></li>';
+              echo '<li class="breadcrumb-item"><a href="./group_perm.php">Editer un groupe</a></li>';
               echo '<li class="breadcrumb-item active" aria-current="page"> '.$ligne4["name"].' </li>';
             }
             else {
-              echo '<li class="breadcrumb-item active" aria-current="page"> Editer un group </li>';
+              echo '<li class="breadcrumb-item active" aria-current="page"> Editer un groupe </li>';
             }
           ?>
-          
+
         </ol>
       </nav>
-            
+
       <?php
         if (isset($_GET["id"])) {
         }
@@ -137,7 +137,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           echo "</center>";
 
           echo "</form>";
-          
+
         }
         else {
         }
