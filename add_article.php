@@ -41,7 +41,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
   <h3 style="font-weight:bold; margin-bottom:4vh;">Publier un nouvel article :</h3>
 
-    <form action="valid_add_article.php" method="GET">
+    <form onsubmit="postForm()" action="valid_add_article.php" method="POST" >
       <div class="form-group">
 
         <input name="title" type="text" placeholder="Titre" class="form-control">
@@ -56,7 +56,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
           include ("config.php");
 
-          $Requete = "SELECT u.id_user,CONCAT(u.firstname ,' ', u.lastname) as name ,u.permission as uperm,g.permission as gperm from user u join `group` g on u.id_group = g.id_group where u.id_user = ".$_SESSION["id"]." order by u.lastname ASC";
+          $Requete = "SELECT u.id_user,CONCAT(u.firstname ,' ', u.lastname) as name ,u.permission as uperm from user u join `group` g on u.id_group = g.id_group where u.id_user = ".$_SESSION["id"]." order by u.lastname ASC";
 
           $Resultat = mysqli_query( $database, $Requete ) ;
 
@@ -69,15 +69,15 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           echo '<input type="text" placeholder="Lien de l\'image principale" name="image" class="form-control">';
           echo "</div>";
 
-          $Requete2 = "SELECT u.id_user, g.permission as gperm, u.permission as uperm from `group` g join user u on g.id_group = u.id_group where u.id_user = ".$_SESSION["id"]."";
+          $Requete2 = "SELECT u.id_user, u.permission as uperm from user u where u.id_user = ".$_SESSION["id"]."";
 
           $Resultat2 = mysqli_query( $database, $Requete2 ) ;
 
           $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ;
-          $uperm = str_split($ligne2["uperm"]);
-          $gperm = str_split($ligne2["gperm"]);
 
-          $perm_array = array_unique(array_merge($uperm,$gperm));
+          $uperm = str_split($ligne2["uperm"]);
+
+          $perm_array = array_unique(array_merge($uperm));
 
           $Requete3 = "SELECT * FROM category order by id_category asc";
 
@@ -99,16 +99,27 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           echo "</select>";
           echo "</div>";
           echo "</div>";
+
         ?>
 
 <br>
+
         <div id="summernote" style="margin-top:4vh;"></div>
-        <script>
-          $('#summernote').summernote({
-            tabsize: 2,
-            height: 500,
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $('#summernote').summernote({
+              height: "500px"
+            });
           });
+
+        function postForm () {
+          var content = $('textarea[name="text"]').html($('#summernote').summernote('code'));
+        }
         </script>
+
+        	<textarea name="text" style="display:none;" >
+					</textarea>
+
 
 <center>
   <input type="submit" value="Publier l'article" class="btn btn-primary" style="margin-top:4vh;">
