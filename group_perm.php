@@ -89,7 +89,6 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           $Requete2 = "SELECT * from `group` where id_group = ".$_GET["id"]." ";
           $Resultat2 = mysqli_query( $database, $Requete2 ) ;
           $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ;
-          $uperm = str_split($ligne2["permission"]);
 
           echo "<form action='valid_group_perm.php'>";
 
@@ -98,37 +97,6 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           echo '<div class="form-group">';
 
           echo '<input name="name" type="text" placeholder="Nom" value="'.$ligne2["name"].'" class="form-control">';
-
-          $Requete3 = "SELECT * from category order by id_category asc";
-
-          $Resultat3 = mysqli_query( $database, $Requete3 ) ;
-          $i = 1;
-          echo "<table>";
-          while (  $ligne3 = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC)  ) {
-            echo "<tr>";
-              echo "<td> ". $ligne3["name"] ." </td>";
-              $m = 0;
-              for ($j = 0 ; $j <= count($uperm)-1 ; $j++  ) {
-                if ($uperm[$j] == $i){
-                  echo "<td> <input type='checkbox' checked  name='perm".$i."' </td>";
-
-                  $m = 1;
-                }
-                else {
-
-                }
-              }
-              if ($m == 0) {
-                echo "<td> <input type='checkbox' name='perm".$i."' </td>";
-              }
-
-              $i++;
-            echo "</tr>";
-          }
-
-          echo "</table>";
-
-          echo "<br>";
 
           echo "<center>";
           echo '<input type="submit" value="Enregister les informations" class="btn btn-primary" style="margin-top:4vh;">';

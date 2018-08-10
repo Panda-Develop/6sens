@@ -143,8 +143,6 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           echo "</form>";
           
         }
-        else {
-        }
       ?>
   </section>
 <footer>

@@ -7,21 +7,23 @@ if (isset($_SESSION['id'])) {
 }
 setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
-  $title = $_GET["title"];
+  $title = $_POST["title"];
 
 
-  $date = $_GET["date"];
+  $date = $_POST["date"];
 
 
-  $author = $_GET["author"];
+  $author = $_POST["author"];
 
 
-  $category = $_GET["category"];
+  $category = $_POST["category"];
 
 
-  $text = "<div>".$_GET["text"]. "</div>";
+  $text = $_POST["text"];
 
-  $imagelink = $_GET["image"];
+  $text = mysql_real_escape_string($text);
+
+  $imagelink = $_POST["image"];
 
   include ("config.php");
 
