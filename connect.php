@@ -28,6 +28,7 @@
                 $_SESSION['id'] = $id;
                 mysqli_close ( $database ) ;
                 header('Location: index.php');
+                exit();
             }
 
 
