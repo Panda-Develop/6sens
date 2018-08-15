@@ -6,7 +6,7 @@ if (isset($_SESSION['id'])) {
   header('location: connexion.php');
 }
 setlocale (LC_TIME, 'fr_FR.utf8','fra');
-
+include ("config.php");
   $title = $_POST["title"];
 
 
@@ -21,11 +21,9 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
   $text = $_POST["text"];
 
-  $text = mysql_real_escape_string($text);
+  $text = mysqli_real_escape_string($database,$text);
 
   $imagelink = $_POST["image"];
-
-  include ("config.php");
 
   $Requete = 'INSERT INTO article (title, date, text,image_link,id_user, id_category) VALUE ("'.$title.'" ,"'.$date.'", "'.$text.'", "'.$imagelink.'" , "'.$author.'", "'.$category.'") ';
   $Resultat = mysqli_query( $database, $Requete ) ;
