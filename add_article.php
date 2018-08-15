@@ -48,7 +48,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
         <br>
         <?php
 
-          $date = date("Y-m-d H-i-s");
+          $date = date("Y-m-d");
 
           echo "<input type='hidden' name='date' value='$date'>";
 
@@ -88,7 +88,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           while ( $ligne3 = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC) ) {
             for ($i = 0 ; $i <= count($perm_array)-1 ; $i++  ) {
               if ($perm_array[$i] == $ligne3["permission"]) {
-                echo "<option value=".$ligne3["permission"]."> ".$ligne3["name"]."  </option>";
+                echo "<option value=".$ligne3["id_category"]."> ".$ligne3["name"]."  </option>";
               }
               else {
 

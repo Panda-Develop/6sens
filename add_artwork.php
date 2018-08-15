@@ -48,7 +48,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
         <br>
         <?php
 
-          $date = date("Y-m-d H-i-s");
+          $date = date("Y-m-d");
 
           echo "<input type='hidden' name='date' value='$date'>";
 
