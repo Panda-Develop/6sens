@@ -5,7 +5,7 @@
   } else {
     header('location: connexion.php');
   }
-require 'config.php';
+
   setlocale (LC_TIME, 'fr_FR.utf8','fra');
 ?>
 
@@ -52,9 +52,7 @@ require 'config.php';
 
 <div class="row">
     <?php
-
-    include ("config.php");
-
+    require ("config.php");
     $request3 = "Select * from user where id_user = ".$_SESSION["id"]."";
 
     $Resultat3 = mysqli_query ( $database, $request3 ) or die(mysql_error() ) ;
@@ -133,7 +131,7 @@ require 'config.php';
 
           <?php
 
-            include ("config.php");
+            require ("config.php");
 
             $request = "SELECT a.*, c.name, u.pseudo  from article a join category c on a.id_category = c.id_category join user u on a.id_user = u.id_user order by id_article desc";
 
@@ -205,6 +203,85 @@ require 'config.php';
           ?>
 
 </div>
+
+<h3 style="font-weight:bold; margin-bottom:4vh;">Les artworks déjà publiés :</h3>
+
+<div class="row">
+
+
+
+<?php
+
+  require ("config.php");
+
+  $request = "SELECT a.*, u.pseudo  from artwork a  join user u on a.id_user = u.id_user order by id_artwork desc";
+
+  $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;
+
+  while (  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)  ) {
+
+      if ($ligne["image_link"] == "") {
+
+        echo "<div class='card col-lg-4 col-md-6 col-sm-12'>";
+        echo "<div class='card-body'>";
+        echo "<h5 class='card-title'>";
+        echo $ligne["title"];
+        echo "</h5>";
+        echo "<p class='card-text'>";
+        $text = strip_tags($ligne["text"]);
+        if (strlen($text) > 300 ) {
+          
+            echo (substr($text, 0, 300). "...") ;
+        }
+        else {
+          echo $text;
+        }
+        echo "</p>";
+        echo "</div>";
+        echo "<div class='card-footer'>";
+        echo '<a href="artwork.php?id='.$ligne["id_artwork"].'"> Lire l\'artwork ... </a>';
+        echo "<br>";
+        echo "<small class='text-muted'>";
+        echo "Par ".$ligne["pseudo"]. " le ".strftime("%d %B %Y", strtotime($ligne['date'])); 
+        echo "</small>";
+        echo "</div>";
+        echo "</div>";
+      }
+
+      else {
+
+        echo "<div class='card col-lg-4 col-md-6 col-sm-12'>";
+        echo "<img class='card-img-top' src=".$ligne["image_link"]." alt='Card image cap'>";
+        echo "<div class='card-body'>";
+        echo "<h5 class='card-title'>";
+        echo $ligne["title"];
+        echo "</h5>";
+        echo "<p class='card-text'>";
+        $text = strip_tags($ligne["text"]);
+        if (strlen($text) > 150 ) {
+            echo (substr($text, 0, 150) . '<a href="artwork.php?id='.$ligne["id_artwork"].'"> Lire la suite ... </a>') ;
+        }
+        else {
+          echo $text;
+        }
+        echo "</p>";
+        echo "</div>";
+        echo "<div class='card-footer'>";
+        echo "<a href='artwork.php?id=".$ligne["id_artwork"]."'> Lire l'artwork </a>";
+        echo "<br>";
+        echo "<small class='text-muted'>";
+        echo "Par ".$ligne["pseudo"]. " le ".strftime("%d %B %Y", strtotime($ligne['date'])); 
+        echo "</small>";
+        echo "</div>";
+        echo "</div>";
+
+      }
+    }
+
+?>
+
+</div>
+
     </section>
     <?php include './footer.php'; ?>
 

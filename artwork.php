@@ -8,9 +8,10 @@ if (isset($_SESSION['id'])) {
 setlocale (LC_TIME, 'fr_FR.utf8','fra');
   $id = $_GET["id"];
   require ("config.php");
-  $request = "Select a.*, u.pseudo from article a join user u on a.id_user = u.id_user where a.id_article = $id"; 
-  $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;
-  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC);   
+  $request = "Select a.*, u.pseudo from artwork a join user u on a.id_user = u.id_user where a.id_artwork = $id"; 
+  $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;   
+  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC);
+
 ?>
 
 
@@ -62,6 +63,14 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
         echo $ligne["text"];
         echo "<br>";
         echo "</article>";
+        
+        echo '<div class="row">';
+        echo '<div class="col">'.$ligne["facebook"].'</div>';
+        echo '<div class="col">'.$ligne["twitter"].'</div>';
+        echo '<div class="col">'.$ligne["instagram"].'</div>';
+        echo '<div class="col">'.$ligne["web_site"].'</div>';
+        echo "</div>";
+        
       ?>
     </section>
 

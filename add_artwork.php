@@ -34,14 +34,14 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
   <nav aria-label="breadcrumb" style="margin-top:4vh;">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Add Article</li>
+    <li class="breadcrumb-item active" aria-current="page">Add Artwork</li>
   </ol>
 </nav>
 
 
-  <h3 style="font-weight:bold; margin-bottom:4vh;">Publier un nouvel article :</h3>
+  <h3 style="font-weight:bold; margin-bottom:4vh;">Publier un nouvel artwork :</h3>
 
-    <form onsubmit="postForm()" action="valid_add_article.php" method="POST" >
+    <form onsubmit="postForm()" action="valid_add_artwork.php" method="POST" >
       <div class="form-group">
 
         <input name="title" type="text" placeholder="Titre" class="form-control">
@@ -56,50 +56,38 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
           include ("config.php");
 
-          $Requete = "SELECT u.id_user,CONCAT(u.firstname ,' ', u.lastname) as name ,u.permission as uperm from user u join `group` g on u.id_group = g.id_group where u.id_user = ".$_SESSION["id"]." order by u.lastname ASC";
+          $Requete = "SELECT u.id_user ,u.permission as uperm from user u join `group` g on u.id_group = g.id_group where u.id_user = ".$_SESSION["id"]." order by u.lastname ASC";
 
           $Resultat = mysqli_query( $database, $Requete ) ;
 
           while (  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)  ) {
               echo "<input type='hidden' value=".$ligne["id_user"]." name='author'>";
           }
-
-          echo "<div class='row'>";
-          echo "<div class='col'>";
+          
           echo '<input type="text" placeholder="Lien de l\'image principale" name="image" class="form-control">';
+          
+          echo "<br>";
+
+          echo '<div class="row">';
+            echo '<div class="col">';
+                echo '<input type="text" placeholder="Facebook" name="facebook" class="form-control">';
+                echo "</div>";
+            echo '<div class="col">';
+                echo '<input type="text" placeholder="Twitter" name="twitter" class="form-control">';
+            echo "</div>";
           echo "</div>";
 
-          $Requete2 = "SELECT u.id_user, u.permission as uperm from user u where u.id_user = ".$_SESSION["id"]."";
+          echo "<br>";
 
-          $Resultat2 = mysqli_query( $database, $Requete2 ) ;
-
-          $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC) ;
-
-          $uperm = str_split($ligne2["uperm"]);
-
-          $perm_array = array_unique(array_merge($uperm));
-
-          $Requete3 = "SELECT * FROM category order by id_category asc";
-
-          $Resultat3 = mysqli_query( $database, $Requete3 ) ;
-          echo "<div class='col'>";
-          echo "<select name='category' class='form-control'>";
-          $i = 0;
-          while ( $ligne3 = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC) ) {
-            for ($i = 0 ; $i <= count($perm_array)-1 ; $i++  ) {
-              if ($perm_array[$i] == $ligne3["permission"]) {
-                echo "<option value=".$ligne3["id_category"]."> ".$ligne3["name"]."  </option>";
-              }
-              else {
-
-              }
-            }
-          }
-
-          echo "</select>";
-          echo "</div>";
-          echo "</div>";
-
+          echo '<div class="row">';
+            echo '<div class="col">';
+                echo '<input type="text" placeholder="Instagram" name="instagram" class="form-control">';
+                echo "</div>";
+            echo '<div class="col">';
+                echo '<input type="text" placeholder="Site web" name="site" class="form-control">';
+            echo "</div>";
+        echo "</div>";
+        echo "</div>";
         ?>
 
 <br>
