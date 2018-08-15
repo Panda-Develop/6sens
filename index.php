@@ -1,3 +1,4 @@
+
 <?php
   session_start();
   if (isset($_SESSION['id'])) {
@@ -72,6 +73,15 @@
       else {
         echo "<a class='btn btn-primary' href='./add_article.php'>Ajouter un article</a>";
       }
+        echo "<div class='dropdown'>";
+		echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
+        echo "Artwork";
+        echo "</button>";
+        echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
+        echo "<a class='dropdown-item' href='./add_artwork.php'>Ajouter un artwork</a>";
+        echo "<a class='dropdown-item' href='./edit_artwork.php'>Editer un artwork</a>";
+        echo "</div>";
+		echo "</div>";
 
       if ($ligne["id_group"] == "2" || $ligne["id_group"] == "1") {
         echo "<div class='dropdown'>";
@@ -100,7 +110,6 @@
       }
       else {
       }
-
       if ($ligne["id_group"] == "1") {
         echo "<div class='dropdown'>";
         echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";

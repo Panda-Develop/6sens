@@ -77,7 +77,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
           <?php
             include ("config.php");
-            $Requete3 = "SELECT * FROM artwork where 1";
+            $Requete3 = "SELECT * FROM artwork where 1 order by date DESC";
             $Resultat3 = mysqli_query( $database, $Requete3 ) ;
             while ($ligne3 = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC)){
               echo "<tr>";
