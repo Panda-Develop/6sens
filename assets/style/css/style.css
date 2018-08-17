@@ -1,0 +1,95 @@
+body{
+  background-color: #ECECEC !important;
+}
+
+/* Accueil */
+.navbar{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+section{
+  margin-top:10vh;
+}
+.section-title{
+  font-family: 'Bangers';
+  font-weight: lighter;
+  text-decoration: underline;
+  padding-bottom: 4vh;
+}
+.temporary{
+  margin-top: 0;
+  height: 300px;
+  width: 100%;
+  background-image: url('../img/bg.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Cards for Flashs, musique, lifestyle */
+.flashs-card{
+  margin:auto;
+  margin-bottom: 4vh;
+}
+.flashs-card img{
+  width: 100%;
+  height: 225px;
+  transition: .3s;
+}
+.flashs-card img:hover{
+  opacity: .7;
+  transition: .3s;
+}
+.hr-flashs{
+  width: 50px;
+  background-color: #000;
+  height: 4px;
+  border: none;
+}
+.flashs-title{
+  font-family: 'Comfortaa';
+  font-weight: bold;
+}
+.flashs-date{
+  font-weight: bold;
+}
+.see-all{
+  text-decoration: none;
+  border-radius: 2px;
+  font-family: 'Comfortaa';
+  font-weight: bold !important;
+  color: #000;
+  padding: 10px;
+  border: 2px solid #000;
+  background-color: #ECECEC;
+  transition: .5s;
+}
+.see-all:hover{
+  color: #ECECEC;
+  background-color: #000;
+  transition: .5s;
+  text-decoration: none;
+}
+.see-all-active{
+  text-decoration: none;
+  border-radius: 2px;
+  font-family: 'Comfortaa';
+  font-weight: bold !important;
+  color: #ECECEC;
+  padding: 10px;
+  border: 2px solid #000;
+  background-color: #000;
+  transition: .5s;
+}
+
+
+/* Footer */
+footer a{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+
+/* About */
+.about-title{
+  font-family: 'Bangers';
+}
