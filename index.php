@@ -4,8 +4,7 @@ include './cockpit/config.php';
  ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>6ème Sens By Trill$hit | Accueil</title>
     <link rel="icon" type="image/png" href="./assets/style/img/logo.png" />
@@ -71,7 +70,7 @@ include './cockpit/config.php';
     </header>
 
     <section style="background-color:#000000;" >
-      <video src="./assets/style/video/logo.mp4" poster="./assets/style/img/logo.png" autoplay style="width:100%; height:400px;">
+      <video  src="./assets/style/video/logo.mp4" autoplay poster="./assets/style/img/logo.png" style="width:100%; height:400px;">
 
       </video>
     </section>
@@ -107,12 +106,28 @@ include './cockpit/config.php';
             $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;
             while (  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)  ) {
               echo "<div class='flashs-card col-lg-4 col-md-6 col-sm-12'>";
+			  echo '<a href="view_article.php?id='.$ligne["id_article"].'">';
               echo "<img src=".$ligne["image_link"].">";
               echo "<br>";
               echo "<hr class='hr-flashs'>";
               echo "<h6 class='flashs-date'>".strftime("%d %B %Y", strtotime($ligne['date']))."</h6>";
               echo "<h4 class='flashs-title'>".$ligne["title"]."</h4>";
-              echo "<p>".$ligne["text"]."</p>";
+			  echo "<p class='flashs-text'>";
+			  $text = strip_tags($ligne["text"]);
+			  if (strlen($text) > 150 ) {
+
+				  echo (substr($text, 0, 150). "...") ;
+			  }
+			  else {
+				echo $text;
+			  }
+			  echo "</p>";
+			  echo "</a>";
+			  echo "<center>";
+			  echo '<a class="see-all" href="view_article.php?id='.$ligne["id_article"].'">';
+			  echo "Lire le flashs";
+			  echo "</a>";
+			  echo "</center>";
               echo "</div>";
               }
           ?>
@@ -154,9 +169,9 @@ include './cockpit/config.php';
             echo "<hr class='hr-flashs'>";
             echo "<p class='flashs-text'>";
             $text = strip_tags($ligne2["text"]);
-            if (strlen($text) > 50 ) {
+            if (strlen($text) > 150 ) {
 
-                echo (substr($text, 0, 50). "...") ;
+                echo (substr($text, 0, 150). "...") ;
             }
             else {
               echo $text;
@@ -198,9 +213,9 @@ include './cockpit/config.php';
           echo "<hr class='hr-flashs'>";
           echo "<p class='flashs-text'>";
           $text = strip_tags($ligne2["text"]);
-          if (strlen($text) > 50 ) {
+          if (strlen($text) > 150 ) {
 
-              echo (substr($text, 0, 50). "...") ;
+              echo (substr($text, 0, 150). "...") ;
           }
           else {
             echo $text;

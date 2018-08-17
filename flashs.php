@@ -1,12 +1,12 @@
 <?php
 session_start();
 include './cockpit/config.php';
-setlocale (LC_TIME, 'fr_FR.utf8','fra');
+
  ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
-    <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>6ème Sens By Trill$hit | Flashs</title>
 
@@ -83,7 +83,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
             echo "<img src=".$ligne2["image_link"].">";
             echo "<br>";
             echo "<hr class='hr-flashs'>";
-            echo "<h6 class='flashs-date'>".strftime("%d %B %Y", strtotime($ligne['date']))."</h6>";
+            echo "<h6 class='flashs-date'>".strftime("%d %B %Y", strtotime($ligne2['date']))."</h6>";
             echo "<h4 class='flashs-title'>".$ligne2["title"]."</h4>";
             echo "<p>".$ligne2["text"]."</p>";
             echo "</div>";

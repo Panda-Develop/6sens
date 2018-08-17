@@ -1,8 +1,6 @@
 <?php
 include './cockpit/config.php';
-setlocale (LC_TIME, 'fr_FR.utf8','fra');
   $id = $_GET["id"];
-  $database = mysqli_connect("54.37.69.12" , "root" , "pandadevelop" , "6sens", "3306");
   $request = "Select a.*, u.pseudo from article a join user u on a.id_user = u.id_user where a.id_article = $id";
   $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;
   $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC);
@@ -12,8 +10,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 <html>
   <head>
     <title><?php echo $ligne["title"]; ?></title>
-    <link rel="icon" type="image/png" href="./assets/img/logo.png" />
-    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="./assets/style/img/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Customs StyleSheets -->
@@ -32,6 +29,30 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
     <script src="./assets/style/frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
   </head>
 
+      <style media="screen">
+    .flashs-card img{
+      width: 100%;
+      height: 225px;
+      transition: .3s;
+    }
+    .flashs-card img:hover{
+      opacity: .5;
+      transition: .5s;
+    }
+    footer a{
+      color: #ffffff;
+      text-decoration: none;
+    }
+    a{
+      color: #000000;
+    }
+    a:hover{
+      color: #000000;
+      text-decoration: none;
+    }
+
+    </style>
+  
   <body>
     <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -98,26 +119,52 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           ?>
           </div>
           </div>
-          <hr class="hr-flashs">
           </section>
         </div>
       </div>
-      <?php
-$request4 = "SELECT id_category from article where id_article = ".$_GET['id']."";
-$Resultat4 = mysqli_query ( $database, $request4 ) or die(mysql_error() ) ;
-$ligne4 = mysqli_fetch_array($Resultat,MYSQLI_ASSOC);
+		  <br>
+		  <h5> Dernières actualitées de la catégorie </h5>
+          <hr class="hr-flashs">
+			<div class="row">
+		  
+		    <?php
+            include ("./cockpit/config.php");
+			
+					  
+		    $request4 = "SELECT id_category from article where id_article = ".$_GET['id']."";
+			$Resultat4 = mysqli_query ( $database, $request4 ) or die(mysql_error() ) ;
+			$ligne4 = mysqli_fetch_array($Resultat4,MYSQLI_ASSOC);
+			
+			$request5 = "SELECT a.*, c.name, u.pseudo from article a join category c on a.id_category = c.id_category join user u on a.id_user = u.id_user where a.id_category = ".$ligne4['id_category']." order by id_article desc limit 3;";
+			$Resultat5 = mysqli_query ( $database, $request5 ) or die(mysql_error() ) ;
+			while ($ligne5 = mysqli_fetch_array($Resultat5,MYSQLI_ASSOC)) {
+              echo "<div class='flashs-card col-lg-4 col-md-6 col-sm-12'>";
+			  echo '<a href="view_article.php?id='.$ligne5["id_article"].'">';
+              echo "<img src=".$ligne5["image_link"].">";
+              echo "<br>";
+              echo "<hr class='hr-flashs'>";
+              echo "<h6 class='flashs-date'>".strftime("%d %B %Y", strtotime($ligne5['date']))."</h6>";
+              echo "<h4 class='flashs-title'>".$ligne5["title"]."</h4>";
+			  echo "<p class='flashs-text'>";
+			  $text = strip_tags($ligne5["text"]);
+			  if (strlen($text) > 150 ) {
 
-$request5 = "SELECT a.*, c.name, u.pseudo from article a join category c on a.id_category = c.id_category join user u on a.id_user = u.id_user where a.id_category = ".$ligne['id_category']." order by id_article  desc;";
-$Resultat5 = mysqli_query ( $database, $request4 ) or die(mysql_error() ) ;
-while ($ligne5 = mysqli_fetch_array($Resultat5,MYSQLI_ASSOC)) {
-  echo '<a href="view_article.php?id='.$ligne5["id_article"].'">';
-  echo "<h6 style='text-decoration:none; color:#000000; font-weight:bold;'>".$ligne5["title"]."</h6>";
-  echo "<hr>";
-  echo "</a>";
-}
-
-
-       ?>
+				  echo (substr($text, 0, 150). "...") ;
+			  }
+			  else {
+				echo $text;
+			  }
+			  echo "</p>";
+			  echo "</a>";
+			  echo "<center>";
+			  echo '<a class="see-all" href="view_article.php?id='.$ligne5["id_article"].'">';
+			  echo "Lire l'article";
+			  echo "</a>";
+			  echo "</center>";
+              echo "</div>";
+              }
+          ?>
+		 </div>
     </div>
 <section style="margin-top:6vh;">
 
