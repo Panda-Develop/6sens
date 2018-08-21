@@ -66,7 +66,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
         }
         else {
       ?>
-      
+
       <table class="table table-hover">
         <thead>
           <tr>
@@ -77,7 +77,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
 
           <?php
             include ("config.php");
-            $Requete3 = "SELECT * FROM article where 1 order by date DESC";
+            $Requete3 = "SELECT * FROM article where 1 order by id_article DESC";
             $Resultat3 = mysqli_query( $database, $Requete3 ) ;
             while ($ligne3 = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC)){
               echo "<tr>";
@@ -111,7 +111,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
           echo "</div>";
 
           echo "<div class='col'>";
-          
+
 
           $Requete5 = "SELECT id_user, permission as uperm from user  where id_user = ".$_SESSION["id"]."";
 
@@ -139,7 +139,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
               }
             }
           }
-          
+
           echo "</select>";
           echo "</div>";
           echo "</div>";
@@ -157,7 +157,7 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
             $('#summernote').summernote('code', markupStr)({
               height: "500px"
 
-              
+
             });
           });
 
@@ -173,11 +173,11 @@ setlocale (LC_TIME, 'fr_FR.utf8','fra');
         <center>
           <input type="submit" value="Enregister les modifications" class="btn btn-primary" style="margin-top:4vh;">
           <br>
-          <input type="submit" name="delete" value="Supprimer l'article" class="btn btn-danger" style="margin-top:2vh;">       
+          <input type="submit" name="delete" value="Supprimer l'article" class="btn btn-danger" style="margin-top:2vh;">
         </center>
 
-        
-        
+
+
                       </div>
             </form>
         </div>

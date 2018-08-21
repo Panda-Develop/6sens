@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /*.jpg$
+Disallow: /*.png$
+Disallow: /*.gif$
+Disallow: /assets/
+Disallow: /cockpit/
+Disallow: ml.php
+Dissalow: valid_email.php
+Disallow: view_article.php
+Allow: /

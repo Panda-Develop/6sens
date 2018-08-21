@@ -1,298 +1,248 @@
-
 <?php
-  session_start();
-  if (isset($_SESSION['id'])) {
+session_start();
+include './cockpit/config.php';
+ ?>
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
 
-  } else {
-    header('location: connexion.php');
-  }
-
-  setlocale (LC_TIME, 'fr_FR.utf8','fra');
-?>
-
-<html>
-  <head>
-    <title> Blog </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./navbar.css">
-    <link rel="stylesheet" href="./index.css">
+    <title>6ème Sens By Trill$hit | Accueil</title>
+    <link rel="icon" type="image/png" href="./assets/style/img/logo.png" />
+    <meta name="keywords" content="6ème sens, Trill$hit, musique, rap, rap us, rap fr, artistes, jeunes artistes, 6eme sens, sixième sens">
+		<meta name="author" content="Trill$hit">
+		<meta name="Description" content="Découvre les dernières news, interviews, articles et clips sur la street-culture et l'univers rap.">
+		<meta name="copyright" content="© 6ème Sens" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Customs StyleSheets -->
 
-<style media="screen">
-  .btn{
-    margin-top: 5px;
-    margin-left: 5px;
-  }
-  .card{
-    padding: 0;
-    margin-bottom: 4vh;
-  }
-}
-</style>
-  </head>
+    <link rel="stylesheet" href="./assets/style/css/reset.css">
+    <link rel="stylesheet" href="./assets/style/css/nav.css">
+    <link rel="stylesheet" href="./assets/style/css/style.css">
+    <link rel="stylesheet" href="./assets/style/css/fonts.css">
 
-  <body>
-    <header>
-      <?php
-        include("nav.php");
-      ?>
-    </header>
-
-    <div style="margin-top:14vh;padding-left:4vh;" class="container">
-      <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-  </ol>
-</nav>
-
-<div class="row">
-    <?php
-    require ("config.php");
-    $request3 = "Select * from user where id_user = ".$_SESSION["id"]."";
-
-    $Resultat3 = mysqli_query ( $database, $request3 ) or die(mysql_error() ) ;
-
-    while (  $ligne = mysqli_fetch_array($Resultat3,MYSQLI_ASSOC)  ) {
-      if ($ligne["id_group"] == "1") {
-        echo "<div class='dropdown'>";
-        echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
-        echo "Article";
-        echo "</button>";
-        echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
-        echo "<a class='dropdown-item' href='./add_article.php'>Ajouter un article</a>";
-        echo "  <a class='dropdown-item' href='./edit_article.php'>Editer un article</a>";
-        echo "  </div>";
-        echo "  </div>";
-      }
-      else {
-        echo "<a class='btn btn-primary' href='./add_article.php'>Ajouter un article</a>";
-      }
-        echo "<div class='dropdown'>";
-		echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
-        echo "Artwork";
-        echo "</button>";
-        echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
-        echo "<a class='dropdown-item' href='./add_artwork.php'>Ajouter un artwork</a>";
-        echo "<a class='dropdown-item' href='./edit_artwork.php'>Editer un artwork</a>";
-        echo "</div>";
-		echo "</div>";
-
-      if ($ligne["id_group"] == "2" || $ligne["id_group"] == "1") {
-        echo "<div class='dropdown'>";
-        echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
-        echo "Catégories";
-        echo "</button>";
-        echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
-        echo "<a class='dropdown-item'  href='./add_categorie.php'>Ajouter une catégorie</a>";
-        echo "  <a class='dropdown-item' href='./categorie_perm.php'>Editer une categorie</a>";
-        echo "  </div>";
-        echo "  </div>";
-      }
-      else {
-      }
-
-      if ($ligne["id_group"] == "1") {
-        echo "<div class='dropdown'>";
-        echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
-        echo "Utilisateurs";
-        echo "</button>";
-        echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
-        echo "<a class='dropdown-item' href='./add_user.php'>Ajouter un utilisateur</a>";
-        echo "<a class='dropdown-item' href='./user_perm.php'>Editer un utilisateur</a>";
-        echo "  </div>";
-        echo "  </div>";
-      }
-      else {
-      }
-      if ($ligne["id_group"] == "1") {
-        echo "<div class='dropdown'>";
-        echo "<button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>";
-        echo "Groupes";
-        echo "</button>";
-        echo "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
-        echo "<a class='dropdown-item' href='./add_group.php'>Ajouter un groupe</a>";
-        echo "<a class='dropdown-item' href='./group_perm.php'>Editer un groupe<a>";
-        echo "  </div>";
-        echo "  </div>";
-      }
-      else {
-      }
-}
-
-     ?>
-</div>
-    </div>
-
-    <section class="content-section container">
-
-      <h3 style="font-weight:bold; margin-bottom:4vh;">Les articles déjà publiés :</h3>
-
-
-<div class="row">
+    <!-- Frameworks -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./assets/style/frameworks/bootstrap/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="./assets/style/frameworks/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./assets/style/frameworks/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Fonts awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 
 
-          <?php
-
-            require ("config.php");
-
-            $request = "SELECT a.*, c.name, u.pseudo  from article a join category c on a.id_category = c.id_category join user u on a.id_user = u.id_user order by id_article desc";
-
-            $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;
-
-            while (  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)  ) {
-
-                if ($ligne["image_link"] == "") {
-
-                  echo "<div class='card col-lg-4 col-md-6 col-sm-12'>";
-                  echo "<div class='card-body'>";
-                  echo "<h5 class='card-title'>";
-                  echo $ligne["title"];
-                  echo "</h5>";
-                  echo "<p class='card-text'>";
-                  $text = strip_tags($ligne["text"]);
-                  if (strlen($text) > 300 ) {
-                    
-                      echo (substr($text, 0, 300). "...") ;
-                  }
-                  else {
-                    echo $text;
-                  }
-                  echo "</p>";
-                  echo "</div>";
-                  echo "<div class='card-footer'>";
-                  echo '<a href="article.php?id='.$ligne["id_article"].'"> Lire la suite ... </a>';
-                  echo "<br>";
-                  echo "<small class='text-muted'>";
-                  echo "Par ".$ligne["pseudo"]. " le ".strftime("%d %B %Y", strtotime($ligne['date'])); 
-                  echo "</small>";
-                  echo "</div>";
-                  echo "</div>";
-                }
-
-                else {
-
-                  echo "<div class='card col-lg-4 col-md-6 col-sm-12'>";
-                  echo "<img class='card-img-top' src=".$ligne["image_link"]." alt='Card image cap'>";
-                  echo "<div class='card-body'>";
-                  echo "<h5 class='card-title'>";
-                  echo $ligne["title"];
-                  echo "</h5>";
-                  echo "<p class='card-text'>";
-                  $text = strip_tags($ligne["text"]);
-                  if (strlen($text) > 150 ) {
-                      echo (substr($text, 0, 150) . '<a href="article.php?id='.$ligne["id_article"].'"> Lire la suite ... </a>') ;
-                  }
-                  else {
-                    echo $text;
-                  }
-                  echo "</p>";
-                  echo "</div>";
-                  echo "<div class='card-footer'>";
-                  echo "<a href='article.php?id=".$ligne["id_article"]."'> Lire l'article </a>";
-                  echo "<br>";
-                  echo "<small class='text-muted'>";
-                  echo "Par ".$ligne["pseudo"]. " le ".strftime("%d %B %Y", strtotime($ligne['date'])); 
-                  echo "</small>";
-                  echo "</div>";
-                  echo "</div>";
-
-
-
-
-                }
-              }
-
-          ?>
-
-</div>
-
-<h3 style="font-weight:bold; margin-bottom:4vh;">Les artworks déjà publiés :</h3>
-
-<div class="row">
-
-
-
-<?php
-
-  require ("config.php");
-
-  $request = "SELECT a.*, u.pseudo  from artwork a  join user u on a.id_user = u.id_user order by id_artwork desc";
-
-  $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;
-
-  while (  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)  ) {
-
-      if ($ligne["image_link"] == "") {
-
-        echo "<div class='card col-lg-4 col-md-6 col-sm-12'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>";
-        echo $ligne["title"];
-        echo "</h5>";
-        echo "<p class='card-text'>";
-        $text = strip_tags($ligne["text"]);
-        if (strlen($text) > 300 ) {
-          
-            echo (substr($text, 0, 300). "...") ;
-        }
-        else {
-          echo $text;
-        }
-        echo "</p>";
-        echo "</div>";
-        echo "<div class='card-footer'>";
-        echo '<a href="artwork.php?id='.$ligne["id_artwork"].'"> Lire l\'artwork ... </a>';
-        echo "<br>";
-        echo "<small class='text-muted'>";
-        echo "Par ".$ligne["pseudo"]. " le ".strftime("%d %B %Y", strtotime($ligne['date'])); 
-        echo "</small>";
-        echo "</div>";
-        echo "</div>";
-      }
-
-      else {
-
-        echo "<div class='card col-lg-4 col-md-6 col-sm-12'>";
-        echo "<img class='card-img-top' src=".$ligne["image_link"]." alt='Card image cap'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>";
-        echo $ligne["title"];
-        echo "</h5>";
-        echo "<p class='card-text'>";
-        $text = strip_tags($ligne["text"]);
-        if (strlen($text) > 150 ) {
-            echo (substr($text, 0, 150) . '<a href="artwork.php?id='.$ligne["id_artwork"].'"> Lire la suite ... </a>') ;
-        }
-        else {
-          echo $text;
-        }
-        echo "</p>";
-        echo "</div>";
-        echo "<div class='card-footer'>";
-        echo "<a href='artwork.php?id=".$ligne["id_artwork"]."'> Lire l'artwork </a>";
-        echo "<br>";
-        echo "<small class='text-muted'>";
-        echo "Par ".$ligne["pseudo"]. " le ".strftime("%d %B %Y", strtotime($ligne['date'])); 
-        echo "</small>";
-        echo "</div>";
-        echo "</div>";
-
-      }
+    <style media="screen">
+    .flashs-card img{
+      width: 100%;
+      height: 225px;
+      transition: .3s;
+    }
+    .flashs-card img:hover{
+      opacity: .5;
+      transition: .5s;
+    }
+    footer a{
+      color: #ffffff;
+      text-decoration: none;
+    }
+    a{
+      color: #000000;
+    }
+    a:hover{
+      color: #000000;
+      text-decoration: none;
     }
 
-?>
+    </style>
+  </head>
+  <body>
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.1&appId=905142046205270&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
+    <header>
+      <?php include './assets/elements/nav.html'; ?>
+    </header>
+
+    <section style="background-color:#000000;" >
+      <video  src="./assets/style/video/logo.mp4" autoplay poster="./assets/style/img/logo.png" style="width:100%; height:400px;">
+
+      </video>
+    </section>
+
+    <section class="main-content">
+
+      <section>
+
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <?php
+    include ("./cockpit/config.php");
+    $request6 = "SELECT a.*, c.name, u.pseudo  from article a join category c on a.id_category = c.id_category join user u on a.id_user = u.id_user order by id_article desc limit 3";
+    $Resultat6 = mysqli_query ( $database, $request6 ) or die(mysql_error() ) ;
+    while (  $ligne6 = mysqli_fetch_array($Resultat6,MYSQLI_ASSOC)  ) {
+      echo "<div class='carousel-item'>";
+        echo "<img class='d-block w-100' src=".$ligne6["image_link"]." alt='First slide'>";
+      echo "</div>";
+      }
+  ?>
 </div>
+</div>
+</div>
+      </section>
+
+      <section class="flashs">
+        <div class="container">
+          <h3 class="section-title">Flashs :</h3>
+          <div class="row">
+            <?php
+            include ("./cockpit/config.php");
+            $request = "SELECT a.*, c.name, u.pseudo  from article a join category c on a.id_category = c.id_category join user u on a.id_user = u.id_user where c.name = 'flashs' order by id_article desc limit 3";
+            $Resultat = mysqli_query ( $database, $request ) or die(mysql_error() ) ;
+            while (  $ligne = mysqli_fetch_array($Resultat,MYSQLI_ASSOC)  ) {
+              echo "<div class='flashs-card col-lg-4 col-md-6 col-sm-12'>";
+			  echo '<a href="view_article.php?id='.$ligne["id_article"].'">';
+              echo "<img src=".$ligne["image_link"].">";
+              echo "<br>";
+              echo "<hr class='hr-flashs'>";
+              echo "<h6 class='flashs-date'>".strftime("%d %B %Y", strtotime($ligne['date']))."</h6>";
+              echo "<h4 class='flashs-title'>".$ligne["title"]."</h4>";
+			  echo "<p class='flashs-text'>";
+			  $text = strip_tags($ligne["text"]);
+			  if (strlen($text) > 150 ) {
+
+				  echo (substr($text, 0, 150). "...") ;
+			  }
+			  else {
+				echo $text;
+			  }
+			  echo "</p>";
+			  echo "</a>";
+			  echo "<center>";
+			  echo '<a class="see-all" href="view_article.php?id='.$ligne["id_article"].'">';
+			  echo "Lire le flashs";
+			  echo "</a>";
+			  echo "</center>";
+              echo "</div>";
+              }
+          ?>
+          </div>
+          <center style="margin-top:6vh;">
+            <a href="./flashs.php" class="see-all">Voir tous les flashs</a>
+          </center>
+        </div>
+      </section>
+
+      <section class="last-youtube-video">
+          <h3 class="section-title" style="margin-left:4vh;">Notre dernière interview :</h3>
+        <div class="embed-responsive embed-responsive-16by9" style="height:70vh;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/O5MRlwh1DHg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <script src="https://apis.google.com/js/platform.js"></script>
+        <div class="container">
+          <br>
+          <div class="g-ytsubscribe" data-channelid="UCH4VjqAwZ8qNa5tXmKGnG8w" data-layout="full" data-count="default"></div>
+        </div>
+      </section>
+
+      <section class="musique-article-section">
+          <div class="container">
+            <h3 class="section-title">Nouveautés musicales :</h3>
+        <div class="row">
+          <?php
+          include ("./cockpit/config.php");
+          $request2 = "SELECT a.*, c.name, u.pseudo  from article a join category c on a.id_category = c.id_category join user u on a.id_user = u.id_user where c.name = 'musique' order by id_article desc limit 6";
+          $Resultat2 = mysqli_query ( $database, $request2 ) or die(mysql_error() ) ;
+          while (  $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC)  ) {
+
+            echo "<div class='flashs-card col-lg-4 col-md-6 col-sm-12' style='margin-top:4vh;'>";
+            echo '<a href="view_article.php?id='.$ligne2["id_article"].'">';
+            echo "<img src=".$ligne2["image_link"].">";
+            echo "<br>";
+            echo "<p class='see-all-active'>".$ligne2["title"]."</p>";
+            echo "<h6 class='flashs-date'>".strftime("%d %B %Y", strtotime($ligne2['date']))." par ".$ligne2["pseudo"]."</h6>";
+            echo "<hr class='hr-flashs'>";
+            echo "<p class='flashs-text'>";
+            $text = strip_tags($ligne2["text"]);
+            if (strlen($text) > 150 ) {
+
+                echo (substr($text, 0, 150). "...") ;
+            }
+            else {
+              echo $text;
+            }
+            echo "</p>";
+            echo "</a>";
+            echo "<center>";
+            echo '<a class="see-all" href="view_article.php?id='.$ligne2["id_article"].'">';
+            echo "Lire la suite";
+            echo "</a>";
+            echo "</center>";
+            echo "</div>";
+            }
+        ?>
+
+        </div>
+          <center style="margin-top:6vh;">
+              <a href="./musique.php" class="see-all">Voir toutes les actus musicales</a>
+          </center>
+          </div>
+      </section>
+
+      <section class="lifestyle-section">
+        <div class="container">
+          <h3 class="section-title">Nouveautés Lifestyle :</h3>
+      <div class="row">
+        <?php
+        include ("./cockpit/config.php");
+        $request2 = "SELECT a.*, c.name, u.pseudo  from article a join category c on a.id_category = c.id_category join user u on a.id_user = u.id_user where c.name = 'lifestyle' order by id_article desc limit 6";
+        $Resultat2 = mysqli_query ( $database, $request2 ) or die(mysql_error() ) ;
+        while (  $ligne2 = mysqli_fetch_array($Resultat2,MYSQLI_ASSOC)  ) {
+
+          echo "<div class='flashs-card col-lg-4 col-md-6 col-sm-12' style='margin-top:4vh;'>";
+          echo '<a href="view_article.php?id='.$ligne2["id_article"].'">';
+          echo "<img src=".$ligne2["image_link"].">";
+          echo "<br>";
+          echo "<p class='see-all-active'>".$ligne2["title"]."</p>";
+          echo "<h6 class='flashs-date'>".strftime("%d %B %Y", strtotime($ligne2['date']))." par ".$ligne2["pseudo"]."</h6>";
+          echo "<hr class='hr-flashs'>";
+          echo "<p class='flashs-text'>";
+          $text = strip_tags($ligne2["text"]);
+          if (strlen($text) > 150 ) {
+
+              echo (substr($text, 0, 150). "...") ;
+          }
+          else {
+            echo $text;
+          }
+          echo "</p>";
+          echo "</a>";
+          echo "<center>";
+          echo '<a class="see-all" href="view_article.php?id='.$ligne2["id_article"].'">';
+          echo "Lire la suite";
+          echo "</a>";
+          echo "</center>";
+          echo "</div>";
+          }
+      ?>
+      </div>
+      <center style="margin-top:6vh;">
+          <a href="./lifestyle.php" class="see-all">Voir toutes les actus lifestyle</a>
+      </center>
+        </div>
+      </section>
 
     </section>
-    <?php include './footer.php'; ?>
 
+
+<section style="margin-top:6vh;">
+
+  <?php include './assets/elements/footer.html'; ?>
+</section>
   </body>
 </html>
